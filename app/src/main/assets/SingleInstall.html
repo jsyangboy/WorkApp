@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>FungoLive About</title>
+    <meta name="Generator" content="EditPlus">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<p>
+
+    public class Test {<br>
+
+    private Test() {}<br>
+    private volatile static Test test;<br>
+
+    public static Test getInstance() {<br>
+    &nbsp;if (test == null) {<br>
+    &nbsp;&nbsp;synchronized (Test.class) {<br>
+    &nbsp;&nbsp;if (test == null) {<br>
+    &nbsp;&nbsp;&nbsp;test = new Test();<br>
+    &nbsp;&nbsp;&nbsp;}<br>
+    &nbsp;&nbsp;}<br>
+    &nbsp;}<br>
+    &nbsp;return test;<br>
+    }<br>
+    }<br>
+
+</p>
+
+</body>
+</html>

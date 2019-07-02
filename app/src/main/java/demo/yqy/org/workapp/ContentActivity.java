@@ -1,14 +1,9 @@
 package demo.yqy.org.workapp;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.File;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,15 +36,9 @@ public class ContentActivity extends AppCompatActivity {
             }
 
             final String fileName = "file:///android_asset/" + itemBean.getJsName() + ".html";
-            File file = new File(fileName);
-            readHtmlFormAssets(fileName);
-            Log.e("yqy", "fileName = " + fileName);
-            if (file.exists()) {
-                Toast.makeText(this, "有文件", Toast.LENGTH_LONG).show();
 
-            } else {
-                Toast.makeText(this, "没有文件", Toast.LENGTH_LONG).show();
-            }
+            readHtmlFormAssets(fileName);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
