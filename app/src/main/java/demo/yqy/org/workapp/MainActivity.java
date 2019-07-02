@@ -45,12 +45,12 @@ public class MainActivity extends AppCompatActivity {
         Resources res = this.getResources(); //这句放在onCreate中
 
         String[] titleArr = res.getStringArray(R.array.title);
-        String[] contentArr = res.getStringArray(R.array.result);
         for (int i = 0; i < titleArr.length; i++) {
             final String str = titleArr[i];
             if (str.startsWith("#")) {
                 stringList.add(new TitleBean(str.replace("#", "")));
             } else {
+                String str[] = titleArr[i].split("#");
                 stringList.add(new ItemBean(str, contentArr[i]));
             }
         }

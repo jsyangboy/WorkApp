@@ -10,20 +10,20 @@ import android.os.Parcelable;
  */
 public class ItemBean extends ShowBean implements Parcelable {
 
-    private String content;//对应的标题
+    private String jsName;//对应的标题
     private String title;
-    public ItemBean(String title,String content) {
+    public ItemBean(String title,String jsName) {
         this.title = title;
-        this.content = content;
+        this.jsName = jsName;
         setShowType(ShowBean.Type_Item);
     }
 
-    public String getContent() {
-        return content;
+    public String getJsName() {
+        return jsName;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setJsName(String jsName) {
+        this.jsName = jsName;
     }
 
     public String getTitle() {
@@ -34,6 +34,7 @@ public class ItemBean extends ShowBean implements Parcelable {
         this.title = title;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -42,13 +43,13 @@ public class ItemBean extends ShowBean implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest, flags);
-        dest.writeString(this.content);
+        dest.writeString(this.jsName);
         dest.writeString(this.title);
     }
 
     protected ItemBean(Parcel in) {
         super(in);
-        this.content = in.readString();
+        this.jsName = in.readString();
         this.title = in.readString();
     }
 
