@@ -90,4 +90,94 @@
         <item>你对某某某互联网发生事情的看法？（直播答题等等）</item>
 
     </string-array>
+
+    <string-array name="result">
+        <item>#小米</item>
+        <item>冒泡排序的链表实现</item>
+        <item>写个快排</item>
+        <item>写个单例模式</item>
+        <item>Activity启动模式</item>
+        <item>异常生命周期</item>
+        <item>从点击应用图标到进入应用，Android系统都做了哪些工作，期间涉及到的进程切换有哪些？</item>
+        <item>说说你了解的IPC方法</item>
+        <item>说说Binder的大体实现</item>
+        <item>怎么控制另外一个进程的View显示</item>
+        <item>说说Android中线程池的实现</item>
+        <item>HashMap如果Hash冲突了怎么解决？</item>
+        <item>双线程通过线程同步的方式打印12121212.......</item>
+
+
+        <item>#腾讯</item>
+        <item>HTTPS是怎么实现的？</item>
+        <item>Android事件传递流程和OnTouchListener的关系</item>
+        <item>Android线程池实现原理</item>
+        <item>双指缩放拖动大图</item>
+        <item>客户端网络安全实现</item>
+        <item>Webview优化</item>
+        <item>Android应用保活</item>
+        <item>RemoteViews实现和使用场景</item>
+        <item>RecyclerView绘制步骤和复用机制</item>
+        <item>Binder的大体设计模式</item>
+        <item>Activity遵循什么设计模式</item>
+        <item>EventBus源码解析，遵循什么设计模式</item>
+        <item>Handler为什么会发生内存泄漏</item>
+        <item>Java内存模块分区和GC机制，GC算法有哪些</item>
+        <item>Finalize机制</item>
+        <item>强引用 弱引用 软引用 虚引用的区别和使用场景</item>
+        <item>LeakCanary的使用和实现原理</item>
+        <item>介绍一下你在开发过程中使用到的设计模式</item>
+        <item>快排</item>
+        <item>对服务器众多错误码的处理（错误码有好几万个）</item>
+
+        <item>#阿里</item>
+        <item>Android消息机制</item>
+        <item>Android事件传递流程</item>
+        <item>Android View绘制流程</item>
+        <item>Activity启动模式</item>
+        <item>Android IPC机制</item>
+        <item>Android线程池设计原理</item>
+        <item>EventBus源码和设计模式</item>
+        <item>Android应用保活</item>
+        <item>Android UI优化</item>
+        <item>Android启动优化</item>
+        <item>快排 堆排 单例</item>
+        <item>进程线程在操作系统中的实现</item>
+        <item>HTTPS的组成是什么？</item>
+        <item>ClassLoader的双亲委托</item>
+        <item>Android中的ClassLoader</item>
+        <item>有过Jni使用经验吗？</item>
+        <item>有过跨平台开发经验吗？</item>
+
+        <item>#今日头条</item>
+        <item>视频加密</item>
+        <item>Android Native Crash</item>
+        <item>视频组成</item>
+        <item>播放器原理</item>
+
+        <item>#其他</item>
+        <item>Android消息机制</item>
+        <item>Android View绘制流程，当一个TextView的实例调用setText()方法后执行了什么</item>
+        <item>Android dalvik虚拟机和Art虚拟机的优化升级点</item>
+        <item>Android屏幕渲染机制</item>
+        <item>热修复的原理，你都了解过哪几种热修复框架</item>
+        <item>OkHttp的原理</item>
+        <item>Android 线程池的实现原理</item>
+        <item>JavaGC机制</item>
+        <item>HashMap的实现机制，怎么样HashMap线程安全</item>
+        <item>可重入锁的实现，公平锁非公平锁都是什么定义？</item>
+        <item>都用过那些常用的数据结构，说说对树的了解？</item>
+        <item>Activity启动模式，allowReparent的特点和栈亲和性</item>
+        <item>WebView优化</item>
+        <item>有没有Jni使用经验</item>
+        <item>Activity启动模式，allowReparent的特点和栈亲和性</item>
+        <item>有使用过RxJava吗？</item>
+        <item>说说你对设计模式的理解，开发过程中主要用到了哪些设计模式？</item>
+        <item>快排写一下，动态规划了解吗？</item>
+
+        <item>#共同问到的</item>
+        <item>为什么离职</item>
+        <item>开发过程中遇到最深刻的BUG是什么</item>
+        <item>当你的开发任务很紧张，你怎么去做代码优化的？</item>
+        <item>你对某某某互联网发生事情的看法？（直播答题等等）</item>
+    </string-array>
 </resources>

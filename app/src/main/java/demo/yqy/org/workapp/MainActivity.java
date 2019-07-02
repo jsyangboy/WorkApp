@@ -1,6 +1,7 @@
 package demo.yqy.org.workapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -18,15 +19,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import demo.yqy.org.workapp.bean.ItemBean;
 import demo.yqy.org.workapp.bean.ShowBean;
 import demo.yqy.org.workapp.bean.TitleBean;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.recycleview)
     RecyclerView recycleView;
 
     MyAdapter adapter;
@@ -36,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
 
         if (recycleView == null) {
             recycleView = findViewById(R.id.recycleview);
@@ -47,13 +44,14 @@ public class MainActivity extends AppCompatActivity {
 
         Resources res = this.getResources(); //这句放在onCreate中
 
-        String[] arr = res.getStringArray(R.array.title);
-        for (int i = 0; i < arr.length; i++) {
-            final String str = arr[i];
+        String[] titleArr = res.getStringArray(R.array.title);
+        String[] contentArr = res.getStringArray(R.array.result);
+        for (int i = 0; i < titleArr.length; i++) {
+            final String str = titleArr[i];
             if (str.startsWith("#")) {
-                stringList.add(new TitleBean(str.replace("#","")));
+                stringList.add(new TitleBean(str.replace("#", "")));
             } else {
-                stringList.add(new ItemBean(str));
+                stringList.add(new ItemBean(str, contentArr[i]));
             }
         }
         adapter.notifyDataSetChanged();
@@ -71,11 +69,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             if (viewType == ShowBean.Type_Item) {
-                View view = LayoutInflater.from(mContext).inflate(R.layout.item_content, parent,false);
+                View view = LayoutInflater.from(mContext).inflate(R.layout.item_content, parent, false);
                 ContentViewHolder viewHolder = new ContentViewHolder(view);
                 return viewHolder;
             } else {
-                View view = LayoutInflater.from(mContext).inflate(R.layout.item_title, parent,false);
+                View view = LayoutInflater.from(mContext).inflate(R.layout.item_title, parent, false);
                 TitleViewHolder viewHolder = new TitleViewHolder(view);
                 return viewHolder;
             }
@@ -98,10 +96,19 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 ContentViewHolder viewHolder = ((ContentViewHolder) holder);
                 final ItemBean itemBean = (ItemBean) stringList.get(position);
-                final String content = itemBean.getContent();
+                final String content = itemBean.getTitle();
                 if (!TextUtils.isEmpty(content)) {
                     viewHolder.content.setText(content);
                 }
+
+                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mContext, ContentActivity.class);
+                        intent.putExtra("bean", itemBean);
+                        startActivity(intent);
+                    }
+                });
             }
         }
 
