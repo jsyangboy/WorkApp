@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < arr.length; i++) {
             final String str = arr[i];
             if (str.startsWith("#")) {
-                stringList.add(new TitleBean(str));
+                stringList.add(new TitleBean(str.replace("#","")));
             } else {
                 stringList.add(new ItemBean(str));
             }
@@ -71,11 +71,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             if (viewType == ShowBean.Type_Item) {
-                View view = LayoutInflater.from(mContext).inflate(R.layout.item_content, null);
+                View view = LayoutInflater.from(mContext).inflate(R.layout.item_content, parent,false);
                 ContentViewHolder viewHolder = new ContentViewHolder(view);
                 return viewHolder;
             } else {
-                View view = LayoutInflater.from(mContext).inflate(R.layout.item_title, null);
+                View view = LayoutInflater.from(mContext).inflate(R.layout.item_title, parent,false);
                 TitleViewHolder viewHolder = new TitleViewHolder(view);
                 return viewHolder;
             }
