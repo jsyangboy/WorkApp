@@ -49,45 +49,44 @@
         <item>Android应用保活#App_Live</item>
         <item>Android UI优化#App_UI</item>
         <item>Android启动优化#App_Start</item>
-        <item>快排 堆排 单例</item>
-        <item>进程线程在操作系统中的实现</item>
-        <item>HTTPS的组成是什么？</item>
-        <item>ClassLoader的双亲委托</item>
+        <item>快排 堆排 单例#Quicksort_</item>
+        <item>进程线程在操作系统中的实现#Thread_Process</item>
+        <item>HTTPS的组成是什么？#Https_MakeUp</item>
+        <item>ClassLoader的双亲委托#ClassLoder</item>
         <item>Android中的ClassLoader</item>
-        <item>有过Jni使用经验吗？</item>
-        <item>有过跨平台开发经验吗？</item>
+        <item>有过Jni使用经验吗？#Jni</item>
+        <item>有过跨平台开发经验吗？#Cross_Platform</item>
 
         <item>#今日头条</item>
-        <item>视频加密</item>
-        <item>Android Native Crash</item>
-        <item>视频组成</item>
-        <item>播放器原理</item>
+        <item>视频加密#Video_Decode</item>
+        <item>Android Native Crash #Android_Native_Crash</item>
+        <item>视频组成#Video_Form</item>
+        <item>播放器原理#Video_Form</item>
 
         <item>#其他</item>
-        <item>Android消息机制</item>
-        <item>Android View绘制流程，当一个TextView的实例调用setText()方法后执行了什么</item>
-        <item>Android dalvik虚拟机和Art虚拟机的优化升级点</item>
-        <item>Android屏幕渲染机制</item>
-        <item>热修复的原理，你都了解过哪几种热修复框架</item>
-        <item>OkHttp的原理</item>
-        <item>Android 线程池的实现原理</item>
-        <item>JavaGC机制</item>
-        <item>HashMap的实现机制，怎么样HashMap线程安全</item>
-        <item>可重入锁的实现，公平锁非公平锁都是什么定义？</item>
-        <item>都用过那些常用的数据结构，说说对树的了解？</item>
-        <item>Activity启动模式，allowReparent的特点和栈亲和性</item>
-        <item>WebView优化</item>
-        <item>有没有Jni使用经验</item>
-        <item>Activity启动模式，allowReparent的特点和栈亲和性</item>
-        <item>有使用过RxJava吗？</item>
-        <item>说说你对设计模式的理解，开发过程中主要用到了哪些设计模式？</item>
-        <item>快排写一下，动态规划了解吗？</item>
+        <item>Android消息机制#Android_Msg</item>
+        <item>Android View绘制流程，当一个TextView的实例调用setText()方法后执行了什么##Android_View</item>
+        <item>Android dalvik虚拟机和Art虚拟机的优化升级点#Android_Dalvik</item>
+        <item>Android屏幕渲染机制#Android_Rander</item>
+        <item>热修复的原理，你都了解过哪几种热修复框架#Hot_Fix</item>
+        <item>OkHttp的原理#OkHttp</item>
+        <item>Android 线程池的实现原理#Thread_Pool</item>
+        <item>JavaGC机制#Java_Gc</item>
+        <item>HashMap的实现机制，怎么样HashMap线程安全#HashMap_safe</item>
+        <item>可重入锁的实现，公平锁非公平锁都是什么定义？#Lock</item>
+        <item>都用过那些常用的数据结构，说说对树的了解？#Tree</item>
+        <item>Activity启动模式，allowReparent的特点和栈亲和性#</item>
+        <item>WebView优化#WebView</item>
+
+        <item>有使用过RxJava吗？#RxJava</item>
+        <item>说说你对设计模式的理解，开发过程中主要用到了哪些设计模式？#User_Patterns</item>
+        <item>快排写一下，动态规划了解吗？#Dynamic</item>
 
         <item>#共同问到的</item>
-        <item>为什么离职</item>
-        <item>开发过程中遇到最深刻的BUG是什么</item>
-        <item>当你的开发任务很紧张，你怎么去做代码优化的？</item>
-        <item>你对某某某互联网发生事情的看法？（直播答题等等）</item>
+        <item>为什么离职#Fire_Boss</item>
+        <item>开发过程中遇到最深刻的BUG是什么#Bug</item>
+        <item>当你的开发任务很紧张，你怎么去做代码优化的？#Work_And_Optimization</item>
+        <item>你对某某某互联网发生事情的看法？（直播答题等等）#Other</item>
 
     </string-array>
 

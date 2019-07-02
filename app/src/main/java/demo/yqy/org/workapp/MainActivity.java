@@ -50,8 +50,10 @@ public class MainActivity extends AppCompatActivity {
             if (str.startsWith("#")) {
                 stringList.add(new TitleBean(str.replace("#", "")));
             } else {
-                String str[] = titleArr[i].split("#");
-                stringList.add(new ItemBean(str, contentArr[i]));
+                String string[] = titleArr[i].split("#");
+                if (string.length > 1) {
+                    stringList.add(new ItemBean(str, string[1]));
+                }
             }
         }
         adapter.notifyDataSetChanged();
