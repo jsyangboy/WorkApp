@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,7 +33,7 @@ public class ContentActivity extends AppCompatActivity {
         try {
             itemBean = getIntent().getParcelableExtra("bean");
             if (itemBean != null) {
-                tvTitle.setText(itemBean.getJsName());
+                tvTitle.setText(itemBean.getTitle());
             }
 
             final String fileName = "file:///android_asset/" + itemBean.getJsName() + ".html";
