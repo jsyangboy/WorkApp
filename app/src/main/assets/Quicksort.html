@@ -7,27 +7,61 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
+<p>
+
+    快速排序由C. A. R. Hoare在1960年提出。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，
+    其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，
+    整个排序过程可以递归进行，以此达到整个数据变成有序序列。
+
+</p>
 <pre class="brush: java;">
 
-package demo.yqy.org.workapp.bean;
 
-public class Test {
+private static int[] arr = new int[6];
 
-    private Test() {
+public static void main(String[] argv) {
+    for (int i = 0; i < arr.length; i++) {
+        arr[i] = (int) (Math.random() * 100);
     }
 
-    private volatile static Test test;
+    prin(arr);
+    quickSort(arr, 0, arr.length-1);
+    System.out.println("");
+    prin(arr);
+}
 
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
+private static void prin(int arr[]) {
+    for (int i = 0; i < arr.length; i++) {
+        System.out.print(arr[i] + " ");
+    }
+}
+
+private static void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        int inde = getIndex(arr, low, high);
+        quickSort(arr, 0, inde);
+        quickSort(arr, inde + 1, high);
+    }
+}
+
+private static int getIndex(int arr[], int low, int high) {
+    int temp = arr[low];
+    while (low < high) {
+        while (low < high && arr[high] >= temp) {
+            high--;
         }
-        return test;
+
+        arr[low] = arr[high];
+
+        while (low < high && arr[low] <= temp) {
+            low++;
+        }
+
+        arr[high] = arr[low];
     }
+
+    arr[low] = temp;
+    return low;
 }
 
 
