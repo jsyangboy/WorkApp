@@ -7,31 +7,29 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<pre class="brush: java;">
+<h3>组成</h3>
+<p>连表数组组成</p>
+<h3>冲突</h3>
+<p>
+    1。开放地址发：
 
-package demo.yqy.org.workapp.bean;
-
-public class Test {
-
-    private Test() {
-    }
-
-    private volatile static Test test;
-
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
-        }
-        return test;
-    }
-}
-
-
-</pre>
-
+</p>
+<p>
+    2。链地址法：
+    这种方法的基本思想是将所有哈希地址为i的元素构成一个称为同义词链的单链表，
+    并将单链表的头指针存在哈希表的第i个单元中，因而查找、插入和删除主要在同义词链中进行。
+    链地址法适用于经常进行插入和删除的情况。
+</p>
+<p>
+    3。再哈希：
+    这种方法是同时构造多个不同的哈希函数：
+　　 Hi=RH1（key）  i=1，2，…，k
+　　 当哈希地址Hi=RH1（key）发生冲突时，再计算Hi=RH2（key）……，直到冲突不再产生。
+    这种方法不易产生聚集，但增加了计算时间。
+</p>
+<p>
+    4。建立公共溢存区：
+    这种方法的基本思想是：将哈希表分为基本表和溢出表两部分，凡是和基本表发生冲突的元素，一律填入溢出表
+</p>
 </body>
 </html>

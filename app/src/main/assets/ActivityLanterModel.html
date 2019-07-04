@@ -7,28 +7,32 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
+
+
+<h3>standard</h3>
+<p>
+    默认模式，会在启动时创建一个新实例，创建的模式也可以随Intent.FLAG_ACTIVITY_NEW_TASK而改变
+</p>
+
+
+<h3>singleTop</h3>
+<p>
+    可以看出，当task顶部有singleTop的Activity时，就复用；若没有就重新创建。
+    singleTop：就是栈顶只有一个instance。
+    适合  接受推送消息的展示页
+</p>
+
+
+<h3>singleTask</h3>
+<p>
+    singleTask的特性是头上不允许有任何task。也不会有重复的instance。在target Activity之后的任何activity都会被干掉。等于重生啊。
+</p>
+
+<h3>singleInstance</h3>
+<p>
+    开辟私有的task，完全独立于程序的其他activity的task。
+</p>
 <pre class="brush: java;">
-
-package demo.yqy.org.workapp.bean;
-
-public class Test {
-
-    private Test() {
-    }
-
-    private volatile static Test test;
-
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
-        }
-        return test;
-    }
-}
 
 
 </pre>
