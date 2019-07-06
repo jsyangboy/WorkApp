@@ -11,11 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b135b11d-3f66-4702-b81d-d75a01fb2c77" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/Actvity_Patterns.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/Actvity_Patterns.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/Android_Dalvik.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/Android_Dalvik.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/Handler.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/Handler.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/SingleInstall.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/SingleInstall.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/Finalize.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/Finalize.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -104,16 +100,25 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/assets/Actvity_Patterns.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="205">
-              <caret line="376" column="18" lean-forward="true" selection-start-line="376" selection-start-column="18" selection-end-line="376" selection-end-column="18" />
+              <caret line="376" column="18" selection-start-line="376" selection-start-column="18" selection-end-line="376" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/assets/Handler.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="267">
+              <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/assets/Handler.html">
+        <entry file="file://$PROJECT_DIR$/app/src/main/assets/Finalize.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+            <state relative-caret-position="870">
+              <caret line="60" column="32" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -142,6 +147,7 @@
         <option value="$PROJECT_DIR$/app/src/main/assets/SingleInstall.html" />
         <option value="$PROJECT_DIR$/app/src/main/assets/Actvity_Patterns.html" />
         <option value="$PROJECT_DIR$/app/src/main/assets/Handler.html" />
+        <option value="$PROJECT_DIR$/app/src/main/assets/Finalize.html" />
       </list>
     </option>
   </component>
@@ -381,8 +387,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="726" y="0" width="714" height="900" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
       <window_info id="Resources Explorer" order="0" weight="0.32984003" />
       <window_info id="Structure" order="1" side_tool="true" />
@@ -397,7 +402,7 @@
       <window_info anchor="bottom" id="TODO" order="1" />
       <window_info anchor="bottom" id="Freeline" order="2" weight="0.3294979" />
       <window_info anchor="bottom" id="Debug" order="3" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="4" visible="true" weight="0.20689656" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="4" visible="true" weight="0.20377359" />
       <window_info anchor="bottom" id="Version Control" order="5" weight="0.38186464" />
       <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.14016737" />
@@ -492,9 +497,6 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/assets/Java_Gc.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/assets/Finalize.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/assets/LeakCanary.html">
@@ -737,14 +739,21 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/assets/Actvity_Patterns.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
-          <caret line="376" column="18" lean-forward="true" selection-start-line="376" selection-start-column="18" selection-end-line="376" selection-end-column="18" />
+          <caret line="376" column="18" selection-start-line="376" selection-start-column="18" selection-end-line="376" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/assets/Handler.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+        <state relative-caret-position="267">
+          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/assets/Finalize.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="60" column="32" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
         </state>
       </provider>
     </entry>
