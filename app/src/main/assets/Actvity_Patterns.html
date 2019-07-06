@@ -7,31 +7,440 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
+<h3>
+    Android开发中常见的设计模式
+</h3>
+
+<h4>
+    1、Android 单例模式
+</h4>
+
 <pre class="brush: java;">
-
-package demo.yqy.org.workapp.bean;
-
-public class Test {
-
-    private Test() {
-    }
-
-    private volatile static Test test;
-
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
+public class SingletionDLC {
+    private volatile static SingletionDLC mInstance;
+    private SingletionDLC() {}
+    public static SingletionDLC getmInstance() {
+        if (mInstance == null) {
+            synchronized (SingletionDLC.class) {
+                if (mInstance == null) {
+                    mInstance = new SingletionDLC();
                 }
             }
         }
-        return test;
+        return mInstance;
+    }
+}
+</pre>
+
+<h4>
+    2、Android Builder模式
+</h4>
+<p>
+    外部类私有构造方法带参数Buidler(静态内部类)，Builder定义build方法创建外部类。
+</p>
+
+<pre class="brush: java;">
+public class Person  {
+    private int ID;
+    private Person(Builder builder) {
+        this.ID = builder.ID;
+    }
+    public static class Builder {
+        private int ID;
+        public Builder setID(int ID) {
+            this.ID = ID;
+            return this;
+        }
+        public Person build() {
+            return new Person(this);
+        }
     }
 }
 
+Person.Builder buider = new Person.Builder();
+buider.setAge(13);
+buider.setName("jack");
+Person jack = buider.build();
+</pre>
+
+<h4>
+    3、Android 原型模式
+</h4>
+<br>
+1、原型模式就是一个拷贝。<br>
+2、实现implements Cloneable的clone方法，来提供类可以clone。<br>
+3、int string这种是值类型，类的对象叫引用类型。<br>
+4、数值拷贝没有深浅拷贝之分，注意引用变量拷贝，如果没有再次加clone方法，默认是浅拷贝。<br>
+浅拷贝：获得变量本身，深拷贝：获得一个新的一模一样的变量。<br>
+</p>
+
+<h4>
+    4、Android 工厂模式
+</h4>
+<p>
+    1、工厂模式分为普通工厂模式、抽象工厂模式。<br>
+    2、普通工厂模式产品用抽象类定义，抽象工厂的产品用接口定义。<br>
+    区别在于生产的产品上。普通工厂创建的都是具体的产品。而抽象工厂创建的时接口。<br>
+    因为接口是抽象出来的。所以叫抽象工厂。<br>
+    3、工厂代码结构要点：<br>
+    普通工厂<br>
+</p>
+
+<pre class="brush: java;">
+public class NokiaFactory extends Factory {
+    @Override
+    public <T extends NokiaPhone> T createNokia(Class<T> clz) {
+        NokiaPhone nokiaPhone = null;
+        try {
+            nokiaPhone = (NokiaPhone) Class.forName(clz.getName()).newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (T) nokiaPhone;
+    }
+}
+</pre>
+<p>
+    这里用的反射，你可以if else一个一个判断来写。或者一个产品对应一个工厂。都是可以的。根据需求变化。
+</p>
+
+<p>
+    抽象工厂
+</p>
+
+<pre class="brush: java;">
+public abstract class Factory {
+    public abstract component.CPU createCPU();
+    public abstract component.Battery createBattery();
+}
+
+public class IPhone6Factory extends Factory {
+    @Override
+    public component.CPU createCPU() {
+        return new A9();
+    }
+
+    @Override
+    public component.Battery createBattery() {
+        return new Battery1000ma();
+    }
+}
+</pre>
+<p>
+    抽象工厂就是生产接口。<br>
+    因为类继承接口就拥有接口的特性。<br>
+    所以我们称这种生产接口的工厂模式为抽象的工厂模式。<br>
+    当然工厂类跟普通工厂一样。可以自己根据需求随意变化。<br>
+</p>
+
+<h4>
+    5、Android 策略模式
+</h4>
+<p>
+    策略模式侧重于提供不同的策略<br>
+    1、假设我们现在对一个数组从小到大排序，这个时候我们写了两个策略，<br>
+    都继承自同一接口。实现时一个冒泡排序，一个插入排序。两个策略。结果都能正常排序。<br>
+    所以策略模式的重点是不同的策略上。<br>
+</p>
+
+
+<h4>
+    6、Android 状态模式
+</h4>
+<p>
+    根据状态的不同，提供不同的行为。<br>
+    1、以下Monday就是一个状态。这个状态下，limit有自己的实现。<br>
+</p>
+
+<pre class="brush: java;">
+public class Monday implements Check {
+    @Override
+    public boolean limit(int lastNumber) {
+        if (lastNumber == 1 || lastNumber == 6) {
+            return true;
+        }
+        return false;
+    }
+}
+
+limitLine.setCheck(monday);
+boolean mondayLimitOne = limitLine.getLimitLine(1);
+boolean mondayLimitTwo = limitLine.getLimitLine(2);
+limitLine.setCheck(tuesday);
+boolean tuesdayLimitOne = limitLine.getLimitLine(1);
+boolean tuesdayLimitTwo = limitLine.getLimitLine(2);
+</pre>
+
+<h4>
+    7、Android 责任链模式
+</h4>
+<p>
+    链式结构处理，A判断是否处理，如果处理请求终止，如果不处理传递给B，<br>
+    这样一直传递。形成链式结构
+    1、代码结构。类拥有一个next对象。根据自己的条件判断是否调用到next。看如下抽象类。
+</p>
+
+<pre class="brush: java;">
+abstract class Leader {
+    static final String TAG = Leader.class.getSimpleName();
+    public Leader nextLeader; // 上一级领导
+    public final void handleLeave(StaffRequestLeave staff) {
+        if (staff.getDays() <= getHandleLeaveDays()) {
+            handle(staff);
+        } else {
+            if (nextLeader != null) {
+                Log.d("Leader", "不处理，流转");
+                nextLeader.handleLeave(staff);
+            } else {
+                refuseRequest();
+            }
+        }
+    }
+
+    abstract int getHandleLeaveDays(); // 批准请假天数
+    abstract void handle(StaffRequestLeave staff); // 处理请假
+    abstract void refuseRequest(); // 拒绝请假
+}
+</pre>
+<h4>
+    8、Android 命令模式
+</h4>
+<p>
+    “行为请求者”与“行为实现者”解耦。多个命令与行为一一对应。<br>
+    代码结构记忆如下：
+</p>
+<pre class="brush: java;">
+public interface Command {
+    void execute();
+}
+
+public class LeftCommand implements Command {
+    private Television tv;
+
+    public LeftCommand(Television tv) {
+        this.tv = tv;
+    }
+
+    @Override
+    public void execute() {
+        tv.leftVolumeeduction();
+    }
+}
+</pre>
+
+<p>
+    1、具体的功能实现在Television里面。相当于用接口Command获得tv实例封装了一下。<br>
+    这样客户端调用就是lfteCommand.execute();不关注具体实现。<br>
+</p>
+
+<h4>
+    9、Android 观察者模式
+</h4>
+<p>
+    一个list合集，提供add,remove遍历观察者，在调用具体方法的时候遍历list里的观察者，并调用观察者的方法
+</p>
+<pre class="brush: java;">
+@Override
+    public void sun() {
+        for (WeatherOberver observerListener : list) {
+            observerListener.sun();
+        }
+    }
+</pre>
+
+
+<h4>
+    10、Android 备忘录模式
+</h4>
+<p>
+    用单独的类来保存和读取状态。避免直接访问数据和内部实现。<br>
+    1、比如MP3，单独写一个类来保存歌名，播放百分比。退出则保存这些数据。再次进入就读取这些状态。<br>
+</p>
+
+
+<h4>
+    11、Android 迭代器模式
+</h4>
+<p>
+    根据传入的list额外提供一个遍历方法。
+    1、迭代器实现如下
+</p>
+<pre class="brush: java;">
+public class IteratorImpl<T> implements Iterator<T> {
+    private List<T> list = new ArrayList<T>();
+    private int cursor = 0;
+
+    public IteratorImpl(List<T> list) {
+        this.list = list;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return cursor != list.size();
+    }
+
+    @Override
+    public T next() {
+        T obj = null;
+        if (this.hasNext()) {
+            obj = this.list.get(cursor++);
+        }
+        return obj;
+    }
+}
+</pre>
+<p>
+    1、通常一个容器就是一个普通的list除开add remove基础方法。
+    2、除开list之外再拥有一个IteratorImpl<T>对象。
+    容器拥有迭代器的核心代码
+</p>
+<pre class="brush: java;">
+@Override
+    public Iterator<T> iterator() {
+        return new IteratorImpl<>(list);
+    }
+</pre>
+<p>
+    调用如下：
+</p>
+<pre class="brush: java;">
+Iterator<String> iterator = containerImpl.iterator();
+// 迭代器提供遍历方法，遍历
+while (iterator.hasNext()) {
+    Log.d("Iterator",iterator.next());
+}
+</pre>
+
+<h4>
+    12、Android 模板方法模式
+</h4>
+<p>
+    流程封装，父类封装不可变方法。子类实现部分或全部可扩展方法。
+    1、代码结构。直接记Activity中的onCreate,onResume就是模板方法模式。
+</p>
+
+<h4>
+    13、Android 访问者模式
+</h4>
+<p>
+    1、被访问者不变。<br>
+    2、根据访问者和被访问者的不同，两两对应达到不同的目的。<br>
+    3、遍历被访问者实现“访问”。<br>
+    4、代码结构记忆要点：<br>
+    多个访问者都继承Visitor借口。根据visit的类型不同，达到不同的目的即：visit里写不同的操作。<br>
+</p>
+<pre class="brush: java;">
+public interface Visitor {
+    public void visit(A a);
+    public void visit(B b);
+}
+</pre>
+
+
+
+<h4>
+    14、Android 中介者模式
+</h4>
+<p>
+    中介者模式就是把网状复杂结构优化为一对多结构。起到协调作用。<br>
+    1、代码结构记忆就是：部门长作为中介者来决策软件部、硬件部、产品部等之间合作调用关系。<br>
+    2、我们常用的就是Activity当中介者，Button,TextView等各种状态来显示各种。Activity协调作用。一对多。<br>
+</p>
+<pre class="brush: java;">
 
 </pre>
 
+
+
+<h4>
+    15、Android 代理模式
+</h4>
+<p>
+    为其他对象提供一种代理以控制这个对象的访问。<br>
+    1、代理模式就是拥有被代理实例并代理它的方法，强调代理二字。<br>
+    2、代理模式分为静态代理和动态代理。<br>
+    3、静态代理就是直接创建一个代理类。包含所有需要代理的方法。代理调用一次。<br>
+    通常我们喜欢写一个Interface来约束需要代理的方法。<br>
+    4、动态代理是SDK提供方法。等于用java反射来调用的需要代理的方法。所以称之为动态代理。<br>
+</p>
+
+
+<h4>
+    16、Android 组合模式(View与ViewGroup)
+</h4>
+<p>
+    将部分整体的层次结构转换为树状结构，是的客户访问对象和组合对象具有一致性。<br>
+    1、树状结构：Head、Node、Leaf<br>
+    2、三节点写法类似。都继承一个抽象类。抽象类定义print，add，remove，getChild。<br>
+    3、每个节点以一个ArrayList<>()来add remove子节点。并拥有一个遍历方法来操作。<br>
+    由于都继承自同一个抽象类。所以add remove的对象都可以用抽象类表示。
+    4、拥有add,remove,getChild的叫透明的组合模式。只有print的叫安全的组合模式。<br>
+    5、透明的组合模式实现到Leaf节点的时候，继承抽象类的add，remove等方法都是空实现，因为没有子节点了。<br>
+</p>
+
+
+<h4>
+    17、Android 适配器模式(ListView与Adapter)
+</h4>
+<p>
+    将一个类的接口转换成客户希望的另一个接口。适配器模式让那些接口不兼容的类可以一起工作<br>
+    1、有两个接口M，N，两个类A，B。A类实现接口M。现要让A也兼容N接口。<br>
+    2、新建适配器类C，类适配器：C extends A implements N. 对象适配器：C implements N，C中拥有A实例<br>
+    3、ListView和Adapter关系：新建适配器抽象类D。D implements N。兼容了N接口并且可以添加其他需要实现的方法。ListView以setAdapter来获得适配器。<br>
+</p>
+<pre class="brush: java;">
+
+</pre>
+
+
+
+
+<h4>
+    18、Android 装饰者模式
+</h4>
+<p>
+    装饰模式指的是在不必改变原类文件和使用继承的情况下，动态地扩展一个对象的功能。<br>
+    和代理模式区分在于功能拓展，代理模式更强调代理二字。<br>
+    1、装饰者抽象类。拥有被装饰者实例并调用方法。装饰者实现类则进行功能扩展。<br>
+</p>
+<pre class="brush: java;">
+
+</pre>
+
+
+<h4>
+    19、Android 享元模式
+</h4>
+<p>
+    缓存池思想“共享”对象，避免重复创建。<br>
+    1、用map缓存，有就直接取用，没有时创建并push到map里。<br>
+    2、Message单链表重复利用表头也可以。<br>
+</p>
+<pre class="brush: java;">
+
+</pre>
+
+<h4>
+    20 Android 外观模式
+</h4>
+<p>
+    提供统一接口，封装API。
+</p>
+<pre class="brush: java;">
+
+</pre>
+
+<h4>
+    21、Android 桥接模式
+</h4>
+<p>
+    将抽象部分与实现部分分离，使它们都可以独立的进行变化。<br>
+    1、实现部分独立，可以用接口或者抽象类实现<br>
+    2、抽象部分拥有事项部分实例，并调用方法<br>
+    3、实现部分主要是对抽象化的事物进一步的具体化操作<br>
+</p>
+<pre class="brush: java;">
+
+</pre>
 </body>
 </html>

@@ -9,29 +9,74 @@
 <body>
 <pre class="brush: java;">
 
-package demo.yqy.org.workapp.bean;
+public class SampleActivity extends Activity{
 
-public class Test {
+    public Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
 
-    private Test() {
-    }
-
-    private volatile static Test test;
-
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
         }
-        return test;
+    };
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 }
 
-
 </pre>
 
+<p>
+    注意这是上面的代码是有问题的代码，但不一定会引起内存泄漏，只是有可能，泄漏对象的是SampleActivity实例。<br>
+
+    这有什么问题呢。<br>
+    问题在于该Handler的实例采用了内部类的写法，它是SampleActivity这个实例的内部类，<br>
+    在Java中，关于内部类有一个特点：在java中，非静态的内部类和匿名内部类都会隐式的持有一个外部类的引用。<br>
+    所以，该handler实例持有了SampleActivity的一个引用。到这里，是不是有点头绪了呢。
+</p>
+
+<p>
+    关于内存泄漏，在android中一个通用的说法是：生命周期较短的组件引用了生命周期较长的组件。<br>
+    Handler就是一种典型的示例，以上面的代码举例。SampleActivity可能会被泄漏，也就是该组件没有用了，<br>
+    比如调用了finish()后，垃圾回收器却迟迟没有回收该Activity。原因出在该实例的handler内部类引用了它，<br>
+    而该handler实例可能被MessageQueue引用着。比如发送了一个延时消息到队列中，那么就可能在队列中存在很长时间，<br>
+    而消息队列（MessageQueue）的生命周期等于它所在的线程。当大到Activity被finish()了后还在队列中时，<br>
+    就满足了上面的短生命周期引用长生命周期的条件。根据Java GC的规则，SampleActivity的引用计数不为0，故不会回收，<br>
+    回收的时机在handler发送的消息出队列时。
+</p>
+
+<p>
+    从上面的说法中，可以思考得到相应的解决方法：
+</p>
+<p>
+    1.保证Activity被finish()时该线程的消息队列没有这个Activity的handler内部类的引用。<br>
+    2.要么让这个handler不持有Activity等外部组件实例，让该Handler成为静态内部类。（静态内部类是不持有外部类的实例的，因而也就调用不了外部的实例方法了）<br>
+    3.在2方法的基础上，为了能调用外部的实例方法，传递一个外部的弱引用进来）<br>
+    4.将Handler放到一个单独的顶层类文件中。<br>
+
+    最好的方法是哪一种呢？其实前三种方法都差不多，第四种如果是一些轻量的操作就太多余了。不过要说通用性，第三种是最为通用的。<br>
+    如果用第一种，其具体的解决方法是当组件销毁时，在恰当的时机调用handler的removeCallbacksAndMessages(null)，
+    如果是在Activity中，则是在onDestroy()的生命周期回调中调用。如果是Activity等具有明确生命周期的组件时可以这么做，但要是在自定义的类中，
+    比如一个单例中，往往不能找好释放的时机。而且开发人员有时会忘记调用remove消息的方法。<br>
+</p>
+
+<pre class="brush: java;">
+public class TestActivity extends Activity {
+
+    private static class MyHandler extends Handler {
+    private final WeakReference<TestActivity> mActivity;
+    public MyHandler(SampleActivity activity) {
+      mActivity = new WeakReference<TestActivity>(activity);
+    }
+
+    @Override
+    public void handleMessage(Message msg) {
+      TestActivity activity = mActivity.get();
+      if (activity != null) {
+         //do Something
+      }
+    }
+ }
+</pre>
 </body>
 </html>

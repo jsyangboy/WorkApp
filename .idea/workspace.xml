@@ -12,8 +12,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b135b11d-3f66-4702-b81d-d75a01fb2c77" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/Https_MakeUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/Https_MakeUp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/Https_Work.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/Https_Work.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/Actvity_Patterns.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/Actvity_Patterns.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/Android_Dalvik.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/Android_Dalvik.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/Handler.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/Handler.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/SingleInstall.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/SingleInstall.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -65,17 +67,53 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/assets/Https_MakeUp.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="63" column="5" lean-forward="true" selection-end-line="160" />
+            <state relative-caret-position="164">
+              <caret line="57" column="23" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/assets/Https_Work.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="245">
+              <caret line="91" column="3" selection-start-line="91" selection-start-column="3" selection-end-line="91" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/assets/SingleInstall.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="9" selection-start-line="9" selection-end-line="9" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/assets/Android_Dalvik.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="371">
+              <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/assets/Actvity_Patterns.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="205">
+              <caret line="376" column="18" lean-forward="true" selection-start-line="376" selection-start-column="18" selection-end-line="376" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/assets/Https_Work.html">
+        <entry file="file://$PROJECT_DIR$/app/src/main/assets/Handler.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3040">
-              <caret line="160" lean-forward="true" selection-start-line="160" selection-end-line="160" />
+            <state relative-caret-position="394">
+              <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -98,9 +136,12 @@
         <option value="$PROJECT_DIR$/app/src/main/assets/HashMap.html" />
         <option value="$PROJECT_DIR$/app/src/main/assets/WeakReference.html" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_content.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/assets/Android_Dalvik.html" />
         <option value="$PROJECT_DIR$/app/src/main/assets/Https_MakeUp.html" />
         <option value="$PROJECT_DIR$/app/src/main/assets/Https_Work.html" />
+        <option value="$PROJECT_DIR$/app/src/main/assets/Android_Dalvik.html" />
+        <option value="$PROJECT_DIR$/app/src/main/assets/SingleInstall.html" />
+        <option value="$PROJECT_DIR$/app/src/main/assets/Actvity_Patterns.html" />
+        <option value="$PROJECT_DIR$/app/src/main/assets/Handler.html" />
       </list>
     </option>
   </component>
@@ -177,7 +218,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="device.picker.selection" value="TEV7N17120004703" />
+    <property name="device.picker.selection" value="Nexus_5X_API_26" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -356,7 +397,7 @@
       <window_info anchor="bottom" id="TODO" order="1" />
       <window_info anchor="bottom" id="Freeline" order="2" weight="0.3294979" />
       <window_info anchor="bottom" id="Debug" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="4" weight="0.208159" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="4" visible="true" weight="0.20689656" />
       <window_info anchor="bottom" id="Version Control" order="5" weight="0.38186464" />
       <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.14016737" />
@@ -450,14 +491,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/assets/Event_Patterns.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-160" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/assets/Handler.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/assets/Java_Gc.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -624,20 +657,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/assets/Android_Dalvik.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-211">
-          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/assets/SingleInstall.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/assets/ActivityLanterModel.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
@@ -687,17 +706,45 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/assets/Https_MakeUp.html">
+    <entry file="file://$PROJECT_DIR$/app/src/main/assets/Https_Work.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="63" column="5" lean-forward="true" selection-end-line="160" />
+        <state relative-caret-position="245">
+          <caret line="91" column="3" selection-start-line="91" selection-start-column="3" selection-end-line="91" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/assets/Https_Work.html">
+    <entry file="file://$PROJECT_DIR$/app/src/main/assets/Https_MakeUp.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3040">
-          <caret line="160" lean-forward="true" selection-start-line="160" selection-end-line="160" />
+        <state relative-caret-position="164">
+          <caret line="57" column="23" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/assets/SingleInstall.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="9" selection-start-line="9" selection-end-line="9" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/assets/Android_Dalvik.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/assets/Actvity_Patterns.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="376" column="18" lean-forward="true" selection-start-line="376" selection-start-column="18" selection-end-line="376" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/assets/Handler.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
         </state>
       </provider>
     </entry>
