@@ -82,6 +82,14 @@
         <item>说说你对设计模式的理解，开发过程中主要用到了哪些设计模式？#User_Patterns</item>
         <item>快排写一下，动态规划了解吗？#Dynamic</item>
 
+        <item>#简历上面可能问到的</item>
+        <item>ARouter的原理#ARouter</item>
+        <item>Vollay的原理#Vollay</item>
+        <item>Dagger2的原理#Dagger2</item>
+        <item>Glide的原理#Glide</item>
+        <item>FFmpeg的原理相关的#Ffmpeg</item>
+        <item>视频相关的知识</item>
+
         <item>#共同问到的</item>
         <item>为什么离职#Fire_Boss</item>
         <item>开发过程中遇到最深刻的BUG是什么#Bug</item>
