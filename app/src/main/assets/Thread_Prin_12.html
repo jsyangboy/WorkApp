@@ -8,29 +8,79 @@
 </head>
 <body>
 <pre class="brush: java;">
-
-package demo.yqy.org.workapp.bean;
-
 public class Test {
 
-    private Test() {
-    }
+    private static class MyThread extends Thread {
 
-    private volatile static Test test;
+        private int prinInfo;
 
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
+        /**
+         * 这里必须要static，这里能保证新建多个MyThread，锁的对象是同一个
+         */
+        private static final Object object = new Object();
+
+        /**
+         * 打印的次数
+         */
+        private static int prinfCount = 1;
+
+        /**
+         * 记录线程的个数
+         */
+        private static int threadCount;
+
+        /**
+         * 记录线程的编号
+         */
+        private int threadNum;
+
+
+        public MyThread(int prinInfo) {
+            this.prinInfo = prinInfo;
+            threadCount++;
+            threadNum = threadCount;
+        }
+
+        @Override
+        public void run() {
+            super.run();
+            while (prinfCount < 100) {
+                synchronized (object) {
+
+                    try {
+
+                        System.out.print(prinInfo);
+
+                        /**
+                         * 唤醒其他线程
+                         * notify：只会唤醒等待该锁的其中一个线程。
+                         * notifyAll：唤醒等待该锁的所有线程。
+                         */
+                        object.notifyAll();
+
+                        /**
+                         * 当前线程等待唤醒
+                         */
+                        object.wait();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    prinfCount++;
                 }
             }
         }
-        return test;
+
+    }
+
+
+    public static void main(String[] argv) {
+        MyThread myThread = new MyThread(1);
+        MyThread myThread1 = new MyThread(2);
+        myThread.start();
+        myThread1.start();
     }
 }
-
-
 </pre>
 
 </body>
