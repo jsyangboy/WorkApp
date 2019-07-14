@@ -7,31 +7,31 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<pre class="brush: java;">
+<h3>
+    一、事件分发的原理：
+</h3>
+<h4>
+    1、事件是如何传递的：
+</h4>
+<p>
+    （1）首先由Activity分发，分发给根View，也就是DecorView（DecorView为整个Window界面的最顶层View）<br>
 
-package demo.yqy.org.workapp.bean;
+    （2）然后由根View分发到子的View<br>
+</p>
 
-public class Test {
+<p>
+    在ViewGroup中可以通过onInterceptTouchEvent方法对事件传递进行拦截。onInterceptTouchEvent方法：<br>
+　　 返回true代表不允许事件继续向子View传递，将会触发当前View的onTouchEvent()，进行事件的消费;<br>
+　　 返回false代表不对事件进行拦截，事件可以传递给孩子<br>
+　　 默认返回false<br>
+</p>
 
-    private Test() {
-    }
+<h4>
+    2、事件是如何处理的：
+</h4>
 
-    private volatile static Test test;
-
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
-        }
-        return test;
-    }
-}
-
-
-</pre>
-
+<p>
+    子View中如果将传递的事件消费掉，父类的ViewGroup中将无法接收到任何事件。
+</p>
 </body>
 </html>
