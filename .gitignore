@@ -52,8 +52,10 @@ gradlew.bat
 .idea/modules.xml
 .idea/scopes/scope_settings.xml
 .idea/vcs.xml
-.idea/workspace.xml
+/.idea/workspace.xml
 .idea/libraries
+/.idea/*.xml
+
 captures/
 .DS_Store
 */.DS_Store

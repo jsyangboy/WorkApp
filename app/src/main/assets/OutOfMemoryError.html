@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>FungoLive About</title>
+    <meta name="Generator" content="EditPlus">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<h3>
+    android常见的内存泄漏
+</h3>
+<p>
+    1. 非静态内部类、匿名内部类<br>
+    2. 静态的View<br>
+    3. Handler<br>
+    4. 监听器（各种需要注册的Listener，Watcher等）<br>
+    5. 资源对象没关闭造成内存泄漏<br>
+    6. 属性动画<br>
+    7. RxJava<br>
+    8. WebView<br>
+    9. 其他的系统控件以及自定义View<br>
+    10. 不一定非要使用弱引用才行<br>
+</p>
+
+<h3>
+    排查方式
+</h3>
+<p>
+
+</p>
+
+<h3>
+    解决方法
+</h3>
+
+<h4>
+    1. 非静态内部类、匿名内部类<br>
+</h4>
+<p>
+    非静态内部类、匿名内部类 都会持有外部类的一个引用，如果有一个静态变量引用了非静态内部类或者匿名内部类，<br>
+    导致非静态内部类或者匿名内部类的生命周期比外部类（Activity）长，就会导致外部类在该被回收的时候，<br>
+    无法被回收掉，引起内存泄露, 除非外部类被卸载（JVM自带的类加载器所加载的类，在虚拟机的生命周期中，<br>
+    始终不会被卸载，除非使用自定义的类加载器，感兴趣的同学可以研究一下）。<br>
+
+    解决办法：<br>
+      将非静态内部类、匿名内部类 改成静态内部类，或者直接抽离成一个外部类。<br>
+    如果在静态内部类中，需要引用外部类对象，那么可以将这个引用封装在一个WeakReference中。<br>
+    如下面代码所示：<br>
+</p>
+
+
+<h4>
+    2. 静态的View<br>
+</h4>
+<p>
+    有时，当一个Activity经常启动，但是对应的View读取非常耗时，<br>
+    我们可以通过静态View变量来保持对该Activity的rootView引用。<br>
+    这样就可以不用每次启动Activity都去读取并渲染View了。这确实是一个提高Activity启动速度的好方法！<br>
+    但是要注意，一旦View attach到我们的Window上，就会持有一个Context(即Activity)的引用。<br>
+    而我们的View有事一个静态变量，所以导致Activity不被回收。<br>
+
+    解决办法：<br>
+      在使用静态View时，需要确保在资源回收时，将静态View detach掉。<br>
+</p>
+
+
+<h4>
+    3. Handler<br>
+</h4>
+<p>
+    我们知道，主线程的Looper对象不断从消息队列中取出消息，然后再交给Handler处理。<br>
+    如果在Activity中定义Handler对象，那么Handler肯定是持有Activty的引用。<br>
+    而每个Message对象是持有Handler的引用的（Message对象的target属性持有Handler引用），<br>
+    从而导致Message间接引用到了Activity。如果在Activty destroy之后，<br>
+    消息队列中还有Message对象，Activty是不会被回收的。当然了，<br>
+    如果消息正在准备（处于延时入队期间）放入到消息队列中也是一样的。<br>
+
+    解决办法：<br>
+      将Handler放入单独的类或者将Handler放入到静态内部类中（静态内部类不会持有外部类的引用）。<br>
+    如果想要在handler内部去调用所在的外部类Activity，<br>
+    可以在handler内部使用弱引用的方式指向所在Activity，这样不会导致内存泄漏。<br>
+    或者在onDestory时，调用相应的方法移除回调和删除消息。<br>
+
+</p>
+
+<h4>
+    4. 监听器（各种需要注册的Listener，Watcher等）<br>
+</h4>
+<p>
+    当我们需要使用系统服务时，比如执行某些后台任务、为硬件访问提供接口等等系统服务。<br>
+    我们需要把自己注册到服务的监听器中。然而，这会让服务持有 activity 的引用，<br>
+    如果程序员忘记在 activity 销毁时取消注册，那就会导致 activity 泄漏了。<br>
+      例如：EditText的一个addTextChangeListener，如果在回调方法里有耗时操作，<br>
+    可能会造成内存泄露。<br>
+
+    解决办法：<br>
+      在onDestory时，取消注册，editText.removeTextChangedListener<br>
+</p>
+
+<h4>
+    5. 资源对象没关闭造成内存泄漏<br>
+</h4>
+<p>
+    当我们打开资源时，一般都会使用缓存。比如读写文件资源、打开数据库资源、<br>
+    使用Bitmap资源等等。当我们不再使用时，应该关闭它们，使得缓存内存区域及时回收。<br>
+    虽然有些对象，如果我们不去关闭，它自己在finalize()函数中会自行关闭。<br>
+    但是这得等到GC回收时才关闭，这样会导致缓存驻留一段时间。如果我们频繁的打开资源，<br>
+    内存泄漏带来的影响就比较明显了。<br>
+
+    解决办法：<br>
+      及时关闭资源<br>
+</p>
+
+<h4>
+    6. 属性动画<br>
+</h4>
+<p>
+    在使用ValueAnimator或者ObjectAnimator时，如果没有及时做cancel取消动画，<br>
+    就可能造成内存泄露。<br>
+
+    因为在cancel方法里，最后调用了endAnimation(); <br>
+    ，在endAnimation里，有个AnimationHandler的单例，会持有属性动画对象的引用，如下代码所示；<br>
+
+    解决办法：<br>
+      在在onDestory时，调用动画的cancel方法<br>
+</p>
+
+<h4>
+    7. RxJava<br>
+</h4>
+<p>
+    在使用RxJava时，如果在发布了一个订阅后，由于没有及时取消，<br>
+    导致Activity/Fragment无法销毁，导致的内存泄露<br>
+    解决办法：<br>
+
+</p>
+
+<h4>
+    8. WebView<br>
+</h4>
+<p>
+    在android 5.1及以上版本的代码中，WebView可能会存在内存泄露，<br>
+      原因可以参考这篇文章：Android 5.1 WebView内存泄漏问题及解决<br>
+
+    解决办法：<br>
+      在销毁webview前一定要onDetachedFromWindow，我们先将webview从<br>
+    它的父view中移除再调用destroy方法，代码如下：<br>
+
+</p>
+
+<h4>
+    9. 其他的系统控件以及自定义View<br>
+</h4>
+<p>
+    自定义view有可能会做一个动画，当view销毁的时候，要注意动画的销毁
+</p>
+
+<h4>
+    10. 不一定非要使用弱引用才行<br>
+</h4>
+<p>
+
+</p>
+
+</body>
+</html>
