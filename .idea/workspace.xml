@@ -11,8 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b135b11d-3f66-4702-b81d-d75a01fb2c77" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/ClassLoder.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/ClassLoder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/Control_Other_View.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/Control_Other_View.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -65,15 +64,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/assets/HashMap.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/assets/Java_Gc.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="209">
@@ -96,11 +86,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/assets/ClassLoder.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
+            <state relative-caret-position="284">
               <caret line="42" column="53" lean-forward="true" selection-start-line="42" selection-start-column="53" selection-end-line="42" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/assets/Control_Other_View.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="14" column="22" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -179,6 +178,7 @@
         <option value="$PROJECT_DIR$/app/src/main/assets/Protobuf.html" />
         <option value="$PROJECT_DIR$/app/src/main/assets/LeakCanary.html" />
         <option value="$PROJECT_DIR$/app/src/main/assets/ClassLoder.html" />
+        <option value="$PROJECT_DIR$/app/src/main/assets/Control_Other_View.html" />
       </list>
     </option>
   </component>
@@ -283,7 +283,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="device.picker.selection" value="TEV7N17120004703" />
+    <property name="device.picker.selection" value="Nexus_5X_API_26" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
@@ -457,19 +457,19 @@
       <window_info id="Designer" order="4" />
       <window_info id="Build Variants" order="5" sideWeight="0.5043732" side_tool="true" weight="0.22532189" />
       <window_info id="Capture Tool" order="6" />
-      <window_info id="Captures" order="7" sideWeight="0.19111112" side_tool="true" visible="true" weight="0.22532189" />
-      <window_info active="true" content_ui="combo" id="Project" order="8" sideWeight="0.8088889" visible="true" weight="0.22532189" />
+      <window_info id="Captures" order="7" sideWeight="0.19056603" side_tool="true" visible="true" weight="0.22532189" />
+      <window_info active="true" content_ui="combo" id="Project" order="8" sideWeight="0.80943394" visible="true" weight="0.22532189" />
       <window_info anchor="bottom" id="Logcat" order="0" weight="0.32944608" />
       <window_info anchor="bottom" id="TODO" order="1" />
       <window_info anchor="bottom" id="Freeline" order="2" weight="0.3294979" />
       <window_info anchor="bottom" id="Debug" order="3" />
-      <window_info anchor="bottom" id="Version Control" order="4" visible="true" weight="0.3487699" />
+      <window_info anchor="bottom" id="Version Control" order="4" weight="0.3487699" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Build" order="6" weight="0.13978495" />
       <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" weight="0.3294979" />
       <window_info anchor="bottom" id="Run" order="8" weight="0.3819242" />
       <window_info anchor="bottom" id="Messages" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.23299566" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.23299566" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Gradle" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
@@ -557,9 +557,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/app.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="589">
@@ -858,8 +855,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/assets/ClassLoder.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
+        <state relative-caret-position="284">
           <caret line="42" column="53" lean-forward="true" selection-start-line="42" selection-start-column="53" selection-end-line="42" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/assets/Control_Other_View.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="22" />
         </state>
       </provider>
     </entry>

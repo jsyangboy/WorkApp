@@ -7,31 +7,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<pre class="brush: java;">
 
-package demo.yqy.org.workapp.bean;
-
-public class Test {
-
-    private Test() {
-    }
-
-    private volatile static Test test;
-
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
-        }
-        return test;
-    }
-}
-
-
-</pre>
+<h3>
+    RemoteViews
+</h3>
+<p>
+    1.最经典的就是自定义通知栏<br>
+    2.桌面显示未读条数<br>
+</p>
 
 </body>
 </html>
