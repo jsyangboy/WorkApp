@@ -7,31 +7,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<pre class="brush: java;">
-
-package demo.yqy.org.workapp.bean;
-
-public class Test {
-
-    private Test() {
-    }
-
-    private volatile static Test test;
-
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
-        }
-        return test;
-    }
-}
-
-
-</pre>
+<h3>
+    1.单利模式
+</h3>
+<h3>
+    观察者模式，解决一对多的关系
+</h3>
 
 </body>
 </html>
