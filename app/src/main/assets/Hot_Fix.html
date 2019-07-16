@@ -7,31 +7,61 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<pre class="brush: java;">
 
-package demo.yqy.org.workapp.bean;
+<h3>
+    目前热修复技术主要有以下几家：
 
-public class Test {
+</h3>
+<h3>
+    腾讯系：
+</h3>
+<p>
+    QQ超级补丁<br>
+    **tinker **<br>
+    美团：robust 每个函数插入额外逻辑<br>
+</p>
 
-    private Test() {
-    }
+<h3>
+    阿里系：
+</h3>
+<p>
+    Xposed (不支持Art虚拟机，已废弃)<br>
+    Andfix (native hook兼容差，适配机型少)<br>
+    Sophix 新一代<br>
+    饿了吗：amigo<br>
+</p>
 
-    private volatile static Test test;
+<p>
+    虽然热修复在android生态圈目前呈现百花齐放的态势，但追根溯源热更新实现的基本原理，<br>
+    可以划分为以:<br>
+    1.tinker为代表的multidex类加载法<br>
+    2.以阿里andfix为代表的底层替换法，<br>
+    而阿里sophix为了提高热修复的成功率同时采用了上述两种方案，并在兼容性上进行了一定的优化。<br>
+</p>
 
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
-        }
-        return test;
-    }
-}
+<h3>
+    底层替换方案：
+</h3>
+<p>
+    我们首先以andfix为例，简答介绍底层替换方案。<br>
+    底层替换是在已经加载了的类中直接在native层替换掉原有方法<br>
+</p>
+<p>
+    但优点是实现热部署，修改及时生效。<br>
+    由于底层替换原理只支持方法替换，不支持方法的增加和减少，成员字段的增加和减少，<br>
+    所以我们需要知道哪些修改会导致方法，字段的改变，从而底层替换热部署失效。<br>
+</p>
 
-
-</pre>
+<h3>
+    Multidex类加载法：
+</h3>
+<p>
+    Tinker方案参考multidex实现原理，在编译时通过新旧两个Dex生成差异patch.dex。<br>
+    在运行时，将差异patch.dex重新和原始安装包的旧Dex合并还原为新的Dex。<br>
+    这个过程可能比较耗费时间与内存，所以tinker单独放在一个后台进程:patch中处理。<br>
+    为了补丁包尽量的小，微信自研了DexDiff算法，它深度利用Dex的格式来减少差异的大小。<br>
+    由于采用ClassLoader机制，所以需要app重启。<br>
+</p>
 
 </body>
 </html>
