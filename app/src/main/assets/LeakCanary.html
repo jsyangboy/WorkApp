@@ -7,31 +7,30 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<pre class="brush: java;">
-
-package demo.yqy.org.workapp.bean;
-
-public class Test {
-
-    private Test() {
-    }
-
-    private volatile static Test test;
-
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
-        }
-        return test;
-    }
-}
-
-
-</pre>
+<h3>
+    检测原理
+</h3>
+<h4>
+    监听
+</h4>
+<p>
+    在Android中，当一个Activity走完onDestroy生命周期后，说明该页面已经被销毁了，<br>
+    应该被系统GC回收。通过Application.registerActivityLifecycleCallbacks()<br>
+    方法注册Activity生命周期的监听，每当一个Activity页面销毁时候，获取到这个Activity去<br>
+    检测这个Activity是否真的被系统GC。
+</p>
+<h4>
+    检测
+</h4>
+<p>
+    当获取了待分析的对象后，需要确定这个对象是否产生了内存泄漏。<br>
+    通过WeakReference + ReferenceQueue来判断对象是否被系统GC回收，<br>
+    WeakReference 创建时，可以传入一个 ReferenceQueue 对象。<br>
+    当被 WeakReference 引用的对象的生命周期结束，一旦被 GC 检查到，GC <br>
+    将会把该对象添加到 ReferenceQueue 中，待ReferenceQueue处理。当 GC <br>
+    过后对象一直不被加入 ReferenceQueue，它可能存在内存泄漏。<br>
+    当我们初步确定待分析对象未被GC回收时候，手动触发GC，二次确认。<br>
+</p>
 
 </body>
 </html>
