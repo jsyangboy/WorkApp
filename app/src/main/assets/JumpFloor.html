@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>FungoLive About</title>
+    <meta name="Generator" content="EditPlus">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+<h3>
+    动态规划（跳楼梯）
+</h3>
+
+<p>
+    首先，动态规划最重要的是掌握他的思想，动态规划的核心思想是把原问题分解成子问题进行求解，<br>
+    也就是分治的思想。<br>
+    那么什么问题适合用动态规划呢？我们通过一个现实中的例子，来理解这个问题。<br>
+    大家可能在公司里面都有一定的组织架构，可能有高级经理、经理、总监、组长然后才是小开发，<br>
+    今天我们通过这个例子，来讲讲什么问题适合使用动态规划。又到了一年一度的考核季，<br>
+    公司要挑选出三个最优秀的员工。一般高级经理会跟手下的经理说，你去把你们那边最优秀的3个人报给我，<br>
+    经理又跟总监说你把你们那边最优秀的人报给我，经理又跟组长说，你把你们组最优秀的三个人报给我，<br>
+    这个其实就动态规划的思想！<br>
+</p>
+
+<pre class="brush: java;">
+
+int jumpFloor(int number) {
+	if(number<=1){
+		return 1;
+	}
+	return jumpFloor(number-1) + jumpFloor(number -2);
+}
+
+</pre>
+
+</body>
+</html>

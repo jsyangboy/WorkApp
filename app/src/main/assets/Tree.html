@@ -7,31 +7,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<pre class="brush: java;">
+<h3>
 
-package demo.yqy.org.workapp.bean;
-
-public class Test {
-
-    private Test() {
-    }
-
-    private volatile static Test test;
-
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
-        }
-        return test;
-    }
-}
-
-
-</pre>
+</h3>
+<p>
+    1.二叉树：每个节点最多含有两个子树的树称为二叉树；<br>
+    2.完全二叉树：对于一颗二叉树，假设其深度为d（d>1）。除了第d层外，<br>
+       其它各层的节点数目均已达最大值，且第d层所有节点从左向右连续地紧密排列，<br>
+       这样的二叉树被称为完全二叉树；<br>
+    3.满二叉树：所有叶节点都在最底层的完全二叉树；<br>
+</p>
 
 </body>
 </html>
