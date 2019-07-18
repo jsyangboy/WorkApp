@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>FungoLive About</title>
+    <meta name="Generator" content="EditPlus">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+<h3>
+    用过哪些系统Service？
+</h3>
+<p>
+    WINDOW_SERVICE 管理打开的窗口程序<br>
+    LAYOUT_INFLATER_SERVICE 取得XML里定义的View<br>
+    ACTIVITY_SERVICE 管理应用程序的系统状态<br>
+    POWER_SERVICE 电源服务<br>
+    ALARM_SERVICE 闹钟服务<br>
+    NOTIFICATION_SERVICE 状态栏服务<br>
+    KEYAUARD_SERVICE 键盘锁服务<br>
+</p>
+
+<h3>
+    是否能在Service进行耗时操作？如果非要可以怎么做？<br>
+</h3>
+<p>
+    Service默认并不会运行在子线程中，也不运行在一个独立的进程中，它同样执行在主线程中（UI线程）。<br>
+    手动打开一个子线程，否则有可能出现主线程被阻塞（ANR）的情况。<br>
+</p>
+
+<h3>
+    前台服务是什么？和普通服务的不同？如何去开启一个前台服务？<br>
+</h3>
+<p>
+    前台服务的服务状态可以被用户看到。它和普通服务最大的区别是，<br>
+    前者会一直有一个正在运行的图标在系统的状态栏显示，下拉状态栏后可以看到更加详细的信息，<br>
+    且当系统内存不足服务被杀死时，通知会被移除。<br>
+    创建一个Notification实例，调用startForeground()方法，<br>
+    不需要NotificationManager将通知显示出来。<br>
+</p>
+
+<h3>
+    是否了解ActivityManagerService，谈谈它发挥什么作用？
+</h3>
+
+<p>
+    ActivityManagerService是Android中最核心的服务 ， <br>
+    主要负责系统中四大组件的启动、切换、调度及应用进程的管理和调度等工作。<br>
+</p>
+
+<p>
+    如何保证Service不被杀死？
+
+    在Service的onStartCommand()中设置flages值为START_STICKY，<br>
+    使得Service被杀死后尝试再次启动Service<br>
+    提升Service优先级，比如设置为一个前台服务<br>
+    在Activity的onDestroy()通过发送广播，并在广播接收器的onReceive()中启动Service。<br>
+
+</p>
+
+<h3>
+    Service的flages值
+</h3>
+<p>
+    1. START_STICKY：<br>
+    如果Service所在的进程，在执行了onStartCommand方法后，被清理了，<br>
+    那么这个Service会被保留在已开始的状态，但是不保留传入的Intent，<br>
+    随后系统会尝试重新创建此Service，由于服务状态保留在已开始状态，<br>
+    所以创建服务后一定会调用onStartCommand方法。如果在此期间没有任何启动命<br>
+    令被传递到service，那么参数Intent将为null，需要我们小心处理。<br>
+    2.START_NOT_STICKY<br>
+    意思就是，在onStartCommand方法返回START_NOT_STICKY 的情况下：
+    如果Service所在的进程，在执行了onStartCommand方法后，被清理了，<br>
+    则系统不会重新启动此Service。<br>
+
+    3.START_REDELIVER_INTENT<br>
+    在onStartCommand方法返回START_REDELIVER_INTENT 的情况下：<br>
+    **如果Service所在的进程，在执行了onStartCommand方法后，被清理了，<br>
+    则结果和START_STICKY一样，也会重新创建此Service并调用onStartCommand方法。<br>
+    不同之处在于，如果是返回的是START_REDELIVER_INTENT ，<br>
+    则重新创建Service时onStartCommand方法会传入之前的intent。<br>
+    **（从名字上就可以理解，REDELIVER INTENT，重新提交intent）<br>
+
+    4.START_STICKY_COMPATIBILITY<br>
+    这个比较简单，是START_STICKY的兼容版本，但是不能保证被清理后onStartCommand方法一定会被重新调用。<br>
+    好了，接下来看onStartCommand的参数。<br>
+</p>
+</body>
+</html>
