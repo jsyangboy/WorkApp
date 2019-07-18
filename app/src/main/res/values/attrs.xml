@@ -92,6 +92,7 @@
         <item>所做的优化有哪些#Optimization</item>
         <item>Protobuf#Protobuf</item>
         <item>常见的内存泄露-排查-解决方式#OutOfMemoryError</item>
+        <item>java虚拟机和Dalvik虚拟机的区别 #JVM_DVM</item>
 
         <item>跳阶梯#JumpFloor</item>
         <item>Looper是死循环为什么不会造成界面卡死#LooperDale</item>
@@ -101,7 +102,7 @@
         <item>YUV跟相机的视频格式的差异#huaping</item>
         <item>视频大小窗口无缝切换#wufengqiehhuan</item>
         <item>MVP和MMVP#mvp_mmvm</item>
-        <item>ListView和RecycleView#mvp_mmvm</item>
+        <item>ListView和RecycleView#RecycleView</item>
         <item>APT#APT</item>
 
         <item>#共同问到的</item>

@@ -7,31 +7,38 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<pre class="brush: java;">
 
-package demo.yqy.org.workapp.bean;
+<h3>
+    RecycleView 跟 ListView的区别
+</h3>
+<p>
+    1.缓存个数不一样，ListView二级缓存，RecycleView 4级缓存<br>
+    2。缓存刷新机制不一样，ListView通过pos去获取缓存的时候，并没有之间拿来使用，<br>
+    而是重新getView，这样会重新bindView，而RecycleView获取缓存后，如果数据没有<br>
+    改变，直接拿来复用，不需要重新bindView。ListView得到的对象是view对象<br>
+    而RecycleView通过Pos去多的缓存得到的是ViewHolder（view+flag）<br>
 
-public class Test {
+    3。RecycleView支持动画<br>
+    4。RecycleView支持局部刷新<br>
+</p>
 
-    private Test() {
-    }
+<h3>
+    ListView的二级缓存
+</h3>
+<p>
+    1.当前显示的缓存<br>
+    2。因此在屏幕外面的缓存<br>
+</p>
 
-    private volatile static Test test;
-
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
-        }
-        return test;
-    }
-}
-
-
-</pre>
+<h3>
+    RecycleView的四级缓存
+</h3>
+<p>
+    1。当前显示的缓存<br>
+    2。因此在屏幕外面的缓存，默认缓存两个<br>
+    3。一个是有个人扩展的缓存，默认不实现<br>
+    4。一个是可以实行RecycleView共享的缓存-b.mRecyclerPool<br>
+</p>
 
 </body>
 </html>
