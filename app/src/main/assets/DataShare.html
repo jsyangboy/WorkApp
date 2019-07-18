@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>FungoLive About</title>
+    <meta name="Generator" content="EditPlus">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<h3>
+    ContentProvider了解多少？
+</h3>
+
+<p>
+    ContentProvider可以让不同应用程序之间进行数据共享，它还可以选择只对哪一部分数据进行共享，<br>
+    从而保证程序中的隐私数据不会有泄漏风险。
+
+</p>
+<h3>
+    Android中提供哪些数据持久存储的方法？
+</h3>
+<p>
+    File 文件存储：Context类中提供了openFileInput()和openFileOutput()方法来打开数据文件里的文件IO流。<br>
+    SharedPreferences存储：一种轻型的数据存储方式，常用来存储一些简单的配置信息，基于XML文件存储key-value键值对数据。<br>
+    SQLite数据库存储：一款轻量级的关系型数据库，它的运算速度非常快，占用资源很少，在存储大量复杂的关系型数据的时可以使用。<br>
+    ContentProvider：四大组件之一，用于数据的存储和共享，不仅可以让不同应用程序之间进行数据共享，<br>
+    还可以选择只对哪一部分数据进行共享，可保证程序中的隐私数据不会有泄漏风险。<br>
+</p>
+
+<h3>
+    Java中的I/O流读写怎么做？
+</h3>
+
+<p>
+    Context类中提供了openFileInput()和openFileOutput()方法来打开数据文件里的文件IO流。<br>
+    bufferedReader.readLine()读<br>
+    bufferedWriter.write(text)写<br>
+</p>
+
+<h3>
+    SharePreferences适用情形？使用中需要注意什么？
+</h3>
+<p>
+    SharePreferences是一种轻型的数据存储方式，适用于存储一些简单的配置信息，<br>
+    如int、string、boolean、float和long。由于系统对SharedPreferences的读/写有一定的缓存策略，<br>
+    即在内存中有一份该文件的缓存，因此在多进程模式下，其读/写会变得不可靠，甚至丢失数据。<br>
+</p>
+
+<h3>
+    了解SQLite中的事务处理吗？是如何做的？
+</h3>
+
+<p>
+    SQLite在做CRDU操作时都默认开启了事务，然后把SQL语句翻译成对应的SQLiteStatement<br>
+    并调用其相应的CRUD方法，此时整个操作还是在rollback journal这个临时文件上进行，<br>
+    只有操作顺利完成才会更新.db数据库，否则会被回滚。<br>
+</p>
+
+<h3>
+    使用SQLite做批量操作有什么好的方法吗？
+</h3>
+<p>
+    使用SQLiteDatabase的beginTransaction()方法开启一个事务，<br>
+    将批量操作SQL语句转化成SQLiteStatement并进行批量操作，结束后endTransaction()<br>
+</p>
+
+<h3>
+    如果现在要删除SQLite中表的一个字段如何做？
+</h3>
+
+<p>
+    SQLite数据库只允许增加表字段而不允许修改和删除表字段，只能采取复制表思想，<br>
+    即创建一个新表保留原表想要的字段、再将原表删除。<br>
+</p>
+
+<h3>
+    使用SQLite时会有哪些优化操作？
+</h3>
+<p>
+    使用事务做批量操作。<br>
+    及时关闭Cursor，避免内存泄漏<br>
+    耗时操作异步化：数据库的操作属于本地IO，通常比较耗时，建议将这些耗时操作放入异步线程中处理<br>
+    ContentValues的容量调整：ContentValues内部采用HashMap来存储Key-Value数据，<br>
+    ContentValues初始容量为8，扩容时翻倍。因此建议对ContentValues填入的内容进行估量，<br>
+    设置合理的初始化容量，减少不必要的内部扩容操作<br>
+    使用索引加快检索速度：对于查询操作量级较大、业务对查询要求较高的推荐使用索引<br>
+</p>
+
+</body>
+</html>
