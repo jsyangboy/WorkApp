@@ -105,6 +105,8 @@
         <item>ListView和RecycleView#RecycleView</item>
         <item>APT#APT</item>
         <item>TCP是如何保证数据可靠性#TCP</item>
+        <item>Gradle#Gradle</item>
+        <item>这个APK构建的过程#Apk</item>
 
         <item>#android 基础知识</item>
         <item>用过哪些系统Service？#Service</item>

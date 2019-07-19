@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>FungoLive About</title>
+    <meta name="Generator" content="EditPlus">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<h3>
+    这个APK构建的过程主要分为以下几步：
+</h3>
+
+
+<p>
+
+    1.通过AAPT(Android Asset Packaging Tool)打包res资源文件，<br>
+    比如AndroidManifest.xml、xml布局文件等，并将这些xml文件编译为二进制，<br>
+    其中assets和raw文件夹的文件不会被编译为二进制，最终会生成R.java和resources.arsc文件。<br>
+    2.AIDL工具会将所有的aidl接口转化为对应的Java接口。<br>
+    3.所有的Java代码，包括R.java和Java接口都会被Java编译器编译成.class文件。<br>
+    4.Dex工具会将上一步生成的.class文件、第三库和其他.class文件编译成.dex文件。<br>
+    5.上一步编译生成的.dex文件、编译过的资源、无需编译的资源（如图片等）会被ApkBuilder工具打包成APK文件。<br>
+    6.使用Debug Keystore或者Release Keystore对上一步生成的APK文件进行签名。<br>
+    7.如果是对APK正式签名，还需要使用zipalign工具对APK进行对齐操作，这样应用运行时会减少内存的开销。<br>
+</p>
+
+</body>
+</html>
