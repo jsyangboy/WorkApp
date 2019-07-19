@@ -7,31 +7,41 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
+<h3>
+    而Android系统对于证书是分为，系统预装证书 和 用户安装证书。
+</h3>
+
+<p>
+    1.Android 6.0（API 级别 23） 及更低版本，应用默认信任 系统预装证书和用户安装证书<br>
+    2.Android 7.0（API 级别 24） 以后则默认仅信任 系统预装证书<br>
+</p>
+
+<h3>
+    证书配置
+</h3>
+<p>
+    我们可以通过编辑配置文件来修改app的默认网络安全配置
+    首先，需要 在 manifest 处声明配置文件
+</p>
 <pre class="brush: java;">
-
-package demo.yqy.org.workapp.bean;
-
-public class Test {
-
-    private Test() {
-    }
-
-    private volatile static Test test;
-
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
-        }
-        return test;
-    }
-}
-
-
+<?xml version="1.0" encoding="utf-8"?>
+    <manifest ...>
+    <application android:networkSecurityConfig="@xml/network_security_config"
+                 ...>
+        ...
+    </application>
+</manifest>
 </pre>
 
+
+<h3>
+    开发者设置
+</h3>
+<p>
+    这个时候我就有需求，我想要release的包是不信任用户证书的，但是又需要留个后门给自己调试。<br>
+    比如：输入框输入特定代码证明我是开发者后，网络框架就取消对证书的验证，这样就可以通过安装用户证书来<br>
+    监控调试 release包的https网络请求。<br>
+    代码使用OkHttp实现，其他网络框架请自行google。<br>
+</p>
 </body>
 </html>
