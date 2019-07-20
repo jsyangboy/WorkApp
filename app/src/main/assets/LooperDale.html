@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>FungoLive About</title>
+    <meta name="Generator" content="EditPlus">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+<h3>
+    要想说明这个问题，要从四个方面说起
+</h3>
+<p>
+    Android应用程序的主线程在进入消息循环过程前，会在内部创建一个Linux管道（Pipe），<br>
+    这个管道的作用是使得Android应用程序主线程在消息队列为空时可以进入空闲等待状态，<br>
+    并且使得当应用程序的消息队列有消息需要处理时唤醒应用程序的主线程。<br>
+</p>
+
+<h3>
+    Process/Thread，
+</h3>
+<p>
+    进程：每个app运行时前首先创建一个进程，该进程是由Zygote fork出来的，<br>
+    用于承载App上运行的各种Activity/Service等组件。进程对于上层应用来说是完全透明的，<br>
+    这也是google有意为之，让App程序都是运行在Android Runtime。大多数情况一个App就运行在一个进程中，<br>
+    除非在AndroidManifest.xml中配置Android:process属性，或通过native代码fork进程。<br>
+
+</p>
+
+<p>
+    线程：线程对应用来说非常常见，比如每次new Thread().start都会创建一个新的线程。<br>
+    该线程与App所在进程之间资源共享，从Linux角度来说进程与线程除了是否共享资源外，并没有本质的区别，<br>
+    都是一个task_struct结构体，在CPU看来进程或线程无非就是一段可执行的代码，CPU采用CFS调度算法，<br>
+    保证每个task都尽可能公平的享有CPU时间片。<br>
+</p>
+
+<h3>
+    Android Binder IPC，
+</h3>
+<p>
+    无消息时会休眠
+</p>
+
+<h3>
+    Handler/Looper/MessageQueue消息机制，
+</h3>
+<p>
+
+</p>
+
+<h3>
+    Linux pipe/epoll机制。
+</h3>
+<p>
+    这里就涉及到Linux pipe/epoll机制，简单说就是在主线程的MessageQueue没有消息时，<br>
+    便阻塞在loop的queue.next()中的nativePollOnce()方法里，<br>
+    详情见Android消息机制1-Handler(Java层)，此时主线程会释放CPU资源进入休眠状态，<br>
+    直到下个消息到达或者有事务发生，通过往pipe管道写端写入数据来唤醒主线程工作。<br>
+</p>
+<p>
+    这里采用的epoll机制，是一种IO多路复用机制，可以同时监控多个描述符，<br>
+    当某个描述符就绪(读或写就绪)，则立刻通知相应程序进行读或写操作，本质同步I/O，<br>
+    即读写是阻塞的。 所以说，主线程大多数时候都是处于休眠状态，并不会消耗大量CPU资源。<br>
+</p>
+
+
+</body>
+</html>

@@ -95,7 +95,7 @@
         <item>java虚拟机和Dalvik虚拟机的区别 #JVM_DVM</item>
 
         <item>跳阶梯#JumpFloor</item>
-        <item>Looper是死循环为什么不会造成界面卡死#LooperDale</item>
+        <item>ActivityThread中的main函数Looper是死循环为什么不会造成界面卡死#LooperDale</item>
         <item>网络抖动的处理#NetWorkDouDong</item>
         <item>音视频同步#volumeSy</item>
         <item>软解切赢解花瓶#huaping</item>
@@ -117,6 +117,7 @@
         <item>Activity #Activity</item>
         <item>App启动流程 #Launcher</item>
         <item>App加固（加壳）的原理 #JiaGu</item>
+        <item>什么是序列化#XuLieHua</item>
 
 
         <item>#共同问到的</item>
