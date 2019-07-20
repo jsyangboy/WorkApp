@@ -1,6 +1,7 @@
 package demo.yqy.org.workapp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
@@ -50,6 +51,31 @@ public class ContentActivity extends AppCompatActivity {
         mWebView.getSettings().setLoadWithOverviewMode(true);
         mWebView.setBackgroundColor(0);
         mWebView.loadUrl(url);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e("yqy","C onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("yqy","C onResume");
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e("yqy","C onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e("yqy","C onStop");
     }
 
 }

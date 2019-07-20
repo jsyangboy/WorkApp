@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e("yqy","M onCreate");
         setContentView(R.layout.activity_main);
 
         if (recycleView == null) {
@@ -150,5 +152,47 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e("yqy","M onStart");
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("yqy","M onResume");
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e("yqy","M onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e("yqy","M onStop");
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e("yqy","M onDestroy");
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.e("yqy","M onRestoreInstanceState");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.e("yqy","M onSaveInstanceState");
+    }
 }

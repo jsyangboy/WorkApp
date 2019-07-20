@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>FungoLive About</title>
+    <meta name="Generator" content="EditPlus">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<h3>
+    缓存算法（页面置换算法）-FIFO、LFU、LRU
+</h3>
+
+<h3>
+    FIFO（First in First out）
+</h3>
+<p>
+    FIFO（First in First out），先进先出<br>
+    在FIFO Cache设计中，核心原则就是：如果一个数据最先进入缓存中，则应该最早淘汰掉。<br>
+</p>
+<h3>
+    LFU（Least Frequently Used）最近最少使用算法。
+</h3>
+<p>
+    它是基于“如果一个数据在最近一段时间内使用次数很少，那么在将来一段时间内被使用的可能性也很小”的思路。<br>
+    注意LFU和LRU算法的不同之处，LRU的淘汰规则是基于访问时间，而LFU是基于访问次数的。
+</p>
+
+<h3>
+    LRU(Least Recently Used)
+</h3>
+<p>
+    LRU全称是Least Recently Used，即最近最久未使用的意思<br>
+    LRU算法的设计原则是：如果一个数据在最近一段时间没有被访问到，那么在将来它被访问的可能性也很小<br>
+</p>
+
+<p>
+    那就是利用链表和hashmap。当需要插入新的数据项的时候，如果新数据项在链表中存在（一般称为命中），<br>
+    则把该节点移到链表头部，如果不存在，则新建一个节点，放到链表头部，若缓存满了，则把链表最后一个节点删除即可。<br>
+    在访问数据的时候，如果数据项在链表中存在，则把该节点移到链表头部，否则返回-1。<br>
+    这样一来在链表尾部的节点就是最近最久未访问的数据项<br>
+</p>
+<h3>
+    LRU的改进
+</h3>
+<p>
+
+</p>
+</body>
+</html>

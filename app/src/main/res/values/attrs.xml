@@ -107,12 +107,17 @@
         <item>TCP是如何保证数据可靠性#TCP</item>
         <item>Gradle#Gradle</item>
         <item>这个APK构建的过程#Apk</item>
+        <item>缓存算法 #Cache</item>
 
         <item>#android 基础知识</item>
         <item>用过哪些系统Service？#Service</item>
         <item>BroadcastReceiver？#BroadcastReceiver</item>
         <item>ContentProvider 和 数据存储 #DataShare</item>
         <item>View #View</item>
+        <item>Activity #Activity</item>
+        <item>App启动流程 #Launcher</item>
+        <item>App加固（加壳）的原理 #JiaGu</item>
+
 
         <item>#共同问到的</item>
         <item>为什么离职#Fire_Boss</item>

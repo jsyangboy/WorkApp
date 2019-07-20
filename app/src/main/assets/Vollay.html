@@ -7,30 +7,80 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
+
+<h3>
+    Volley框架特点：
+</h3>
+
+<p>
+    1.适用于频繁请求而每次请求数据量不会很大；<br>
+    2.在请求的基础上做了磁盘缓存；<br>
+    3.防止多次相同请求浪费资源；<br>
+    4.提供String、Json、图片异步下载；<br>
+    5.网络请求的优先级处理；<br>
+    5.图片请求无需担心生命周期问题。<br>
+</p>
+
+<h3>
+
+</h3>
+<p>
+    上面是 Volley 的总体设计图，主要是通过两种Diapatch Thread不断从RequestQueue中取出请求，<br>
+    根据是否已缓存调用Cache或Network这两类数据获取接口之一，从内存缓存或是服务器取得请求的数据，<br>
+    然后交由ResponseDelivery去做结果分发及回调处理。<br>
+</p>
+
+<h3>
+    volley是三级缓存
+</h3>
+<p>
+    1.内存缓存<br>
+    2.网络缓存<br>
+    3.本地缓存（自己实现）<br>
+</p>
+
+<h3>
+    常用的请求
+</h3>
+<p>
+    1.StringRequest<br>
+    2.JsonRequest<br>
+    3.ImageRequest<br>
+    4.ImageLoader
+</p>
+
+<p>
+    手动实现缓存
+</p>
+
+
 <pre class="brush: java;">
+public class BitmapCache implements ImageCache {
 
-package demo.yqy.org.workapp.bean;
+    private LruCache<String, Bitmap> mCache;
 
-public class Test {
-
-    private Test() {
-    }
-
-    private volatile static Test test;
-
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
+    public BitmapCache() {
+        int maxSize = 10 * 1024 * 1024; //提供一个10Mb的缓存.
+        mCache = new LruCache<String, Bitmap>(maxSize) {
+            @Override
+            protected int sizeOf(String key, Bitmap bitmap) {
+                return bitmap.getRowBytes() * bitmap.getHeight();
             }
-        }
-        return test;
+        };
     }
+
+    @Override
+    public Bitmap getBitmap(String url) {
+        return mCache.get(url);
+    }
+
+    @Override
+    public void putBitmap(String url, Bitmap bitmap) {
+        mCache.put(url, bitmap);
+    }
+
 }
-
-
+ImageLoader imageLoader = new ImageLoader(mQueue, new BitmapCache());
 </pre>
 
 </body>

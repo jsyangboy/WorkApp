@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>FungoLive About</title>
+    <meta name="Generator" content="EditPlus">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<h3>
+    加固的原理
+</h3>
+
+<p>
+    加壳是在二进制的程序中植入一段代码，在运行的时候优先取得程序的控制权，做一些额外的工作。大多数病毒就是基于此原理。
+</p>
+
+<h3>
+    加壳
+</h3>
+<P>
+    1.将没有加密的dex文件和加密文件合并成一个新的dex文件，这就成了加密的过程
+</P>
+
+<h3>
+    去壳
+</h3>
+<p>
+    简单来说就是：在应用运行的时候在通过重写系统函数在类加载器加载过程中使用对应的解密算法将加密的dex文件去壳
+</p>
+<p>
+    Dalvik虚拟机会加载我们经过修改的新的classes.dex文件，<br>
+    并最先运行ProxyApplication类。在这个类里面，有2个关键的方法：attachBaseContext和onCreate方法。<br>
+    ProxyApplication显示运行attachBaseContext再运行onCreate方法<br>
+
+    在attachBaseContext方法里，主要做两个工作：<br>
+
+    读取classes.dex文件末尾记录加密dex文件大小的数值，<br>
+    则加密dex文件在新classes.dex文件中的位置为：len(新classes.dex文件) – len(加密dex文件大小)。<br>
+    然后将加密的dex文件读取出来，加密并保存到资源目录下<br>
+    然后使用自定义的DexClassLoader加载解密后的原dex文件<br>
+
+    在onCreate方法中，主要做两个工作：<br>
+
+    通过反射修改ActivityThread类，并将Application指向原dex文件中的Application<br>
+    创建原Application对象，并调用原Application的onCreate方法启动原程序<br>
+</p>
+</body>
+</html>

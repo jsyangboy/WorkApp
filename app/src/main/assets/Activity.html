@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>FungoLive About</title>
+    <meta name="Generator" content="EditPlus">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<h3>
+    四大组件之一
+</h3>
+<h3>
+    onStart()和onResume()/onPause()和onStop()的区别？
+</h3>
+<p>
+    onStart()与onStop()是从Activity是否可见的角度去调用<br>
+    onResume()与onPause()是从Activity是否显示在前台这个角度去调用
+</p>
+
+<h3>
+    Activity A启动另一个Activity B会回调哪些方法？<br>
+    如果Activity B是完全透明呢？如果启动的是一个Dialog呢？
+</h3>
+<p>
+    1.会调用A 的onPause() -> B 的onCreate() -> onStart() -> onResume() -> A的onStop()
+    2.不会调用A 的onStop()方法，Dialog同理
+</p>
+
+<h3>
+    优先级低的Activity在内存不足被回收后怎样做可以恢复到销毁前状态？<br>
+</h3>
+<p>
+    低优先级的Activity在内存不足被回收后重新启动会引发Activity重建，<br>
+    会调用onRestoreInstanceState方法，并将onSaveInstanceState方法<br>
+    保存的Bunble对象作为参数传到onRestoreInstanceState 和 onCreate方法中。<br>
+    因此可通过onRestoreInstanceState(Bundle savedInstanceState)和<br>
+    onCreate((Bundle savedInstanceState)来判断Activity是否被重建，并取出数据进行恢复。<br>
+    在onCreate中需要判断savedInstanceState是否为空。<br>
+</p>
+
+<h3>
+    Android onSaveInstanceState()和onRestoreInstanceState()调用时机
+</h3>
+<p>
+    1.onsaveInstanceState是之乡在onStop之前，并且是非人为的回收Activity的时候调用<br>
+    2.onRestoreInstanceState是在onStart之后调用，它的bunder参数不会空<br>
+    只有在activity确实是被系统回收，重新创建activity的情况下才会被调用
+</p>
+
+<h3>
+    Activity的启动过程？
+</h3>
+<p>
+    调用startActivity()后经过重重方法会转移到ActivityManagerService的startActivity()，<br>
+    并通过一个IPC回到ActivityThread的内部类ApplicationThread中，并调用其scheduleLaunchActivity()<br>
+    将启动Activity的消息发送并交由Handler H处理。Handler H对消息的处理会调用<br>
+    handleLaunchActivity()->performLaunchActivity()得以完成Activity对象的创建和启动。<br>
+</p>
+
+<h3>
+    一个Activty先start一个Service后，再bind时会回调什么方法？此时如何做才能回调Service的onDestroy()方法？
+</h3>
+<p>
+    这两种启动方法并不冲突，startService()启动Service之后，再bindService()绑定，此时只会回调onBind()方法<br>
+    需要同时调用 stopService()和 unbindService()方法才能让服务销毁掉。<br>
+</p>
+
+<h3>
+    Service如何和Activity进行通信？
+</h3>
+
+<p>
+    通过bindService()可以实现Activity调用Service中的方法。<br>
+    通过广播实现Service向Activity发送消息<br>
+</p>
+<h3>
+    是否了解ActivityManagerService，谈谈它发挥什么作用？
+</h3>
+<p>
+    ActivityManagerService是Android中最核心的服务 ， <br>
+    主要负责系统中四大组件的启动、切换、调度及应用进程的管理和调度等工作。<br>
+</p>
+
+
+</body>
+</html>

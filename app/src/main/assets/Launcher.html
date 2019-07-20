@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>FungoLive About</title>
+    <meta name="Generator" content="EditPlus">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<p>
+    1.点击桌面App图标，Launcher进程采用Binder IPC向system_server进程发起startActivity请求；<br>
+    2.system_server进程接收到请求后，向zygote进程发送创建进程的请求；<br>
+    3.Zygote进程fork出新的子进程，即App进程；<br>
+    4.App进程，通过Binder IPC向sytem_server进程发起attachApplication请求；<br>
+    5.system_server进程在收到请求后，进行一系列准备工作后，再通过binder IPC向App进程发送scheduleLaunchActivity请求；<br>
+    6.App进程的binder线程（ApplicationThread）在收到请求后，通过handler向主线程发送LAUNCH_ACTIVITY消息；<br>
+    7.主线程在收到Message后，通过发射机制创建目标Activity，并回调Activity.onCreate()等方法<br>
+</p>
+
+</body>
+</html>
