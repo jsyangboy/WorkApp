@@ -36,7 +36,8 @@
     post的时候分为两种情况：<br>
     1。当view已经在window中了，这里已经绘制好了，直接调用UI线程的Handler发送runnable<br>
     2。如果View还未attach到window，将runnable放入ViewRootImpl的RunQueue中。<br>
-    等待view绘制好之后在处理post的消息，因为looper是不断的
+    view.post()方法在整个view树的performMeasure, performLayout, performDraw执行完后，<br>
+    才被主线程轮询到，才得到执行。<br>
 </p>
 
 <p>
