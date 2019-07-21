@@ -7,31 +7,39 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<pre class="brush: java;">
 
-package demo.yqy.org.workapp.bean;
+<h3>
+    一、过度绘制
+</h3>
 
-public class Test {
+<p>
+    去除不必要的背景色：<br>
+    (1) 设置窗口背景色为通用背景色，去除根布局背景色<br>
+    (2) 若页面背景色与通用背景色不一致，在页面渲染完成后移除窗口背景色<br>
+    (3) 去除和列表背景色相同的Item背景色<br>
+    布局视图树扁平化：<br>
+    (1) 移除嵌套布局<br>
+    (2) 使用merge、include标签<br>
+    (3) 使用性能消耗更小布局（ConstraintLayout）<br>
+    减少透明色，即alpha属性的使用：<br>
+</p>
 
-    private Test() {
-    }
+<h3>
+    二、UI 线程的复杂运算
+</h3>
 
-    private volatile static Test test;
-
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
-        }
-        return test;
-    }
-}
+<p>
+    UI线程的复杂运算会造成UI无响应, 当然更多的是造成UI响应停滞, 卡顿。产生ANR已经是卡顿的极致了
+    解决方案：运算阻塞导致的卡顿的分析, 可以使用 Traceview 这个工具。
+</p>
 
 
-</pre>
+<h3>
+    三、频繁的 GC
+</h3>
 
+<p>
+    过度绘制检测
+</p>
 </body>
 </html>

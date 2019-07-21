@@ -7,31 +7,66 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<pre class="brush: java;">
 
-package demo.yqy.org.workapp.bean;
+<h3>
+    Html加载流程
+</h3>
+<p>
+    创建并初始化WebView
+    下载网页所需资源文件
+    渲染展示网页
+</p>
 
-public class Test {
+<h3>
+    创建并初始化WebView
+</h3>
+<p>
+    首次初始化WebView会比第二次初始化慢很多。初始化后，即使WebView已释放，<br>
+    但一些多WebView共用的全局服务/资源对想仍未释放，而第二次初始化不需要生成，因此初始化变快。<br>
+</p>
 
-    private Test() {
-    }
+<h3>
+    下载网页所需资源文件
+</h3>
+<p>
+    DNS解析耗时:
+    html网页文件获取过程中，首先需要将url链接解析成ip地址，根据ip地址获取到对应html文件。<br>
+    1. 网页资源压缩，并CDN加速处理，缩短请求耗时。<br>
+    2. 服务端下发填充好首屏数据的网页，作为网页首屏展示，减少网页上数据请求时间。<br>
+    3. App闲置状态时，下载离线包到本地，加载时优先加载离线包数据。后续更新接收下发的差异包，与当前离线包合并成完整包。<br>
+</p>
+<p>
+    HTML解析耗时
+    解析html文件，构建DOM树，耗时取决于html节点嵌套复杂程度，与硬件解析能力强弱。<br>
+</p>
 
-    private volatile static Test test;
+<h3>
+    渲染展示网页
+</h3>
 
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
-        }
-        return test;
-    }
-}
+<p>
+    WebView在Application中提前初始化实现WebView复用<br>
+    另开WebView进程<br>
+    DNS解析优化（接口与网页主域名一致）<br>
+    线上资源压缩、CDN加速<br>
+    静态直出，直接下发首屏html<br>
+    离线预推，下发离线包，并增量更新<br>
+    WebView创建与网络请求并行<br>
+    网页按节点局部刷新<br>
+    自定义实现图片资源缓存<br>
+    重新定义图片加载格式，shareP<br>
+    本地资源拦截替换<br>
+</p>
+<h3>
+    额外知识
+</h3>
+<p>
+    CDN的全称是Content Delivery Network，即内容分发网络。<br>
+    CDN是构建在现有网络基础之上的智能虚拟网络，依靠部署在各地的边缘服务器，<br>
+    通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，<br>
+    提高用户访问响应速度和命中率。CDN的关键技术主要有内容存储和分发技术<br>
+</p>
 
-
-</pre>
 
 </body>
 </html>
