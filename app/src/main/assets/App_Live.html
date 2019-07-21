@@ -7,31 +7,24 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<pre class="brush: java;">
+<h3>
+    方案一：双进程守护
+</h3>
+<p>
 
-package demo.yqy.org.workapp.bean;
+</p>
+<h3>
+    使用前台任务
+</h3>
+<p>
 
-public class Test {
+</p>
+<h3>
+    终极：系统应用白名单
+</h3>
+<p>
 
-    private Test() {
-    }
-
-    private volatile static Test test;
-
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
-        }
-        return test;
-    }
-}
-
-
-</pre>
+</p>
 
 </body>
 </html>
