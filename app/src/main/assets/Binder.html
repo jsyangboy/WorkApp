@@ -7,31 +7,56 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<pre class="brush: java;">
+<h3>
+    设置模式化
+</h3>
+<p>
+    代理的设置模式
+</p>
 
-package demo.yqy.org.workapp.bean;
+<h3>
+    大体实现
+</h3>
+<p>
+    1.客户端首先获取服务器端的代理对象。所谓的代理对象实际上就是在客户端建立一个服务端的“引用”，<br>
+    该代理对象具有服务端的功能，使其在客户端访问服务端的方法就像访问本地方法一样。<br>
+    2.客户端通过调用服务器代理对象的方式向服务器端发送请求。<br>
+    3.代理对象将用户请求通过Binder驱动发送到服务器进程。<br>
+    4.服务器进程处理用户请求，并通过Binder驱动返回处理结果给客户端的服务器代理对象。<br>
+    5.客户端收到服务端的返回结果。<br>
+</p>
 
-public class Test {
+<h3>
+    (1)什么是Binder
+</h3>
+<p>
+    1. 直观来说，Binder是Android中的一个类，它继承了IBinder接口<br>
+    2. 从IPC角度来说，Binder是Android中的一种跨进程通信方式，Binder还可以理解为一种虚拟的物理设备，<br>
+    它的设备驱动是/dev/binder，该通信方式在linux中没有<br>
+    3. 从Android Framework角度来说，Binder是ServiceManager连接各种Manager<br>
+    （ActivityManager、WindowManager，etc）和相应ManagerService的桥梁<br>
+    4. 从Android应用层来说，Binder是客户端和服务端进行通信的媒介，当你bindService的时候，<br>
+    服务端会返回一个包含了服务端业务调用的Binder对象，通过这个Binder对象，<br>
+    客户端就可以获取服务端提供的服务或者数据，这里的服务包括普通服务和基于AIDL的服务<br>
+</p>
 
-    private Test() {
-    }
+<h3>
+    (2)为什么要使用Binder？
+</h3>
+<p>
+    主要有两个方面的原因：<br>
 
-    private volatile static Test test;
+    安全方面:<br>
+        传统的进程通信方式对于通信双方的身份并没有做出严格的验证，<br>
+    比如Socket通信ip地址是客户端手动填入，很容易进行伪造，<br>
+    而Binder机制从协议本身就支持对通信双方做身份校检，因而大大提升了安全性。<br>
 
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
-        }
-        return test;
-    }
-}
+    性能方面:<br>
+    在移动设备上（性能受限制的设备，比如要省电），广泛地使用跨进程通信对通信机制的性能有严格的要求，<br>
+    Binder相对出传统的Socket方式，更加高效。Binder数据拷贝只需要一次，而管道、消息队列、Socket都需要2次，<br>
+    共享内存方式一次内存拷贝都不需要，但实现方式又比较复杂。<br>
+</p>
 
-
-</pre>
 
 </body>
 </html>
