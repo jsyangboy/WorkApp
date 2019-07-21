@@ -7,31 +7,46 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<pre class="brush: java;">
 
-package demo.yqy.org.workapp.bean;
+<h3>
+    使用
+</h3>
 
-public class Test {
+<p>
+    RemoteViews 的作用是在其他进程中显示并更新 View 界面。主要用于通知栏和桌面小部件上
+</p>
 
-    private Test() {
-    }
+<h3>
+    工作原理
+</h3>
+<p>
+    RemoteViews 是实现了 Parcelable 接口的，可以通过 Binder 传递到其他进程中。<br>
+    比如，前面提到的两个使用场景中，通知栏和桌面小部件分别由 NotificationManager 和 <br>
+    AppWidgetManager 管理，它们 通过 Binder 分别和 SystemServer 进程中的 <br>
+    NotificationManagerService 以及 AppWidgetManagerService 通信，实现了跨进程传递 <br>
+    RemoteViews<br>
+</p>
 
-    private volatile static Test test;
+<h3>
 
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
-        }
-        return test;
-    }
-}
+</h3>
+<p>
 
+</p>
 
-</pre>
+<h3>
+
+</h3>
+<p>
+
+</p>
+
+<h3>
+
+</h3>
+<p>
+
+</p>
 
 </body>
 </html>
