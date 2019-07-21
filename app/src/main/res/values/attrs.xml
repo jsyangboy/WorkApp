@@ -118,6 +118,7 @@
         <item>App启动流程 #Launcher</item>
         <item>App加固（加壳）的原理 #JiaGu</item>
         <item>什么是序列化#XuLieHua</item>
+        <item>什么时候获取view的宽高，怎么样的获取宽高最合适#GetViewWidth</item>
 
 
         <item>#共同问到的</item>

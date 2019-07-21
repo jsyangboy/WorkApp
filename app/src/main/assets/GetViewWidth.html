@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>FungoLive About</title>
+    <meta name="Generator" content="EditPlus">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+<h3>
+    View是在Activity的什么时候生命周期开始测量？
+</h3>
+<h3>
+    onResume后开始执行onMeasure和OnLayout，<br>
+    .在onCreate里的setContentView中 确定了布局文件中有哪些对象；<br>
+</h3>
+
+<h3>
+    获取view宽高的方案？
+</h3>
+<p>
+    1, Activity/View的onWindowFocusChanged,该方法执行在测量函数之后<br>
+    2。view.post(runnable)<br>
+    3, ViewTreeObserver<br>
+
+</p>
+<h3>
+
+</h3>
+
+<h3>
+    getWindow().getDecorView().post能保证获取得到为什么？
+</h3>
+<p>
+    post的时候分为两种情况：<br>
+    1。当view已经在window中了，这里已经绘制好了，直接调用UI线程的Handler发送runnable<br>
+    2。如果View还未attach到window，将runnable放入ViewRootImpl的RunQueue中。<br>
+    等待view绘制好之后在处理post的消息，因为looper是不断的
+</p>
+
+<p>
+    。既然这样，我们的View的绘制加载和View.post()都是又主线Handler来，<br>
+    所以只有当View的绘制加载的消息完成之后，才会处理我们View.pos()发送来的消息，<br>
+    所以我们才够在View.post()内获取到View的宽高。<br>
+</p>
+</body>
+</html>
