@@ -7,31 +7,109 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<pre class="brush: java;">
+<h3>
 
-package demo.yqy.org.workapp.bean;
+</h3>
 
-public class Test {
+<h3>
+    音频数据
+</h3>
+<p>
+    音频里面有PTS,DTS
+</p>
+<h3>
+    视频数据
+</h3>
+<p>
+    视频里面有PTS,DTS
+</p>
 
-    private Test() {
-    }
+<h3>
+    原理
+</h3>
+<p>
+    1.视频的获取<br>
+    2.视频的解码<br>
+    3.视频的同步<br>
+    4.视频的渲染<br>
+</p>
+<h3>
+    1.视频的获取
+</h3>
+<p>
+    会根据网络请求地址来拉去视频数据，并且将拉取到的视频数据<br>
+    进行组装，组装为一帧一帧的音视频数据，app端会将得到的原始数据<br>
+    进行缓存，做法都是使用两个队列分别存粗音视频
+</p>
 
-    private volatile static Test test;
-
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
-        }
-        return test;
-    }
-}
+<h3>
+    2.视频的解码
+</h3>
+<p>
+    播放器会根据得到的视频数据来进行分析，使用对用的音频视频解码器<br>
+    来多数据进行解码，比如说h262，aac等
+</p>
 
 
-</pre>
+<h3>
+    3.音视频的同步
+</h3>
+<p>
+    解码过程中，为了让音视频渲染同步，会对音视频做同步处理<br>
+    同步主要有三种(音频同步到视频，视频同步到音频，音视频同步到外部时钟)<br>
+    同步的主要参考数据是音视频帧中的PTS跟DTS<br>
+</p>
+
+
+<h3>
+    4.视频的渲染
+</h3>
+<p>
+    最后一步就是将渲染到界面上，android中的视频渲染主要有三种方式<br>
+    1.surfaceView<br>
+    2.TextureView<br>
+    3.openGLes<br>
+</p>
+<h3>
+    surfaceView
+</h3>
+<p>
+    1.支持异步渲染，内部使用双缓存<br>
+    2。SurfaceView是双缓冲机制，有front和back，这两个交替显示，每post一次交替一次。<br>
+    3.简单来讲就是绘制的时候是在back试图中绘制，绘制好了之后，front切换到back试图<br>
+</p>
+<p>
+    因为SurfaceView的内容不在应用窗口上，所以不能使用变换（平移、缩放、旋转等）。<br>
+    也难以放在ListView或者ScrollView中，不能使用UI控件的一些特性比如View.setAlpha()。
+</p>
+<h3>
+    TextureView
+</h3>
+<p>
+    优点：支持移动、旋转、缩放等动画，支持截图<br>
+    缺点：必须在硬件加速的窗口中使用，占用内存比SurfaceView高，在5.0以前在主线程渲染，5.0以后有单独的渲染线程<br>
+</p>
+
+<h3>
+    openGLes
+</h3>
+<p>
+    （1）顶点变换：(着色器语言)<br>
+        1.顶点位置变换<br>
+    　　 2.计算顶点观照<br>
+    　　 3.纹理坐标变换<br>
+    （2）图元装配：<br>
+        即将顶点根据primitive(原始的连接关系）还原成网格结构，<br>
+        1。比如，一个三角形其中一个顶点在画面外，另外两个顶点在画面内，这时我们在屏幕上看到的就是一个四边形，然后将四边形切成两个三角形<br>
+        2。比如说我已经把图片给显示出来了，但是呢，并没有做到让它显示到具体的位置，而跟这个位置相关的则需要靠图元装配<br>
+    （3）纹理映射，着色：<br>
+        是将纹理空间中的纹理像素映射到屏幕空间中的像素的过程。<br>
+    （4）最后阶段的管道上的片段，进行了一系列的测试：<br>
+        1. 裁减测试<br>
+        2.Alpha(透明度)测试<br>
+        3.模板测试<br>
+        4.深度测试<br>
+</p>
 
 </body>
 </html>

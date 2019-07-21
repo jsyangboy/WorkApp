@@ -7,31 +7,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<pre class="brush: java;">
-
-package demo.yqy.org.workapp.bean;
-
-public class Test {
-
-    private Test() {
-    }
-
-    private volatile static Test test;
-
-    public static Test getInstance() {
-        if (test == null) {
-            synchronized (Test.class) {
-                if (test == null) {
-                    test = new Test();
-                }
-            }
-        }
-        return test;
-    }
-}
-
-
-</pre>
-
+<h3>
+    视频加密的方式
+</h3>
+<p>
+    1.防盗链技术，严格来说，这个不属于视频加密，知识防止下载
+    2.基于关键帧去加密，比如I帧
+    2.HLS的加密，也就是m3u8里面的ts数据进行加密处理
+</p>
 </body>
 </html>
